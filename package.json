@@ -1,0 +1,24 @@
+{
+  "name": "gamejob",
+  "version": "1.0.0",
+  "description": "Proyecto de final de curso de DAW",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcelra97/Proyecto.git"
+  },
+  "author": "Marcel Ramírez Novillo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcelra97/Proyecto/issues"
+  },
+  "homepage": "https://github.com/marcelra97/Proyecto#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2",
+    "sass": "^1.26.3"
+  }
+}

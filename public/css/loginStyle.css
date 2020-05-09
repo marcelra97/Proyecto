@@ -1,0 +1,107 @@
+body {
+  background-color: #EAEAEA;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+}
+body #contenido {
+  height: 110vh;
+  display: grid;
+  grid-template-columns: 25% 1fr 25%;
+  grid-template-rows: 1fr 20%;
+  grid-template-areas: "parteSuperior parteSuperior parteSuperior" "footer footer footer";
+}
+body #contenido #parteSuperior {
+  display: grid;
+  grid-area: parteSuperior;
+  grid-template-columns: 25% 1fr 25%;
+  grid-template-rows: 20% 1fr;
+  grid-template-areas: "header header header" "main main main";
+  background-image: url("../img/fondologin.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body #contenido #parteSuperior #header {
+  grid-area: header;
+  color: white;
+  display: flex;
+  flex-direction: row;
+}
+body #contenido #parteSuperior #header h1 {
+  margin-left: 5%;
+}
+body #contenido #parteSuperior #header h3 {
+  margin-left: 19%;
+  margin-top: 5%;
+  text-align: center;
+}
+body #contenido #parteSuperior #main {
+  grid-area: main;
+  display: grid;
+  grid-template-rows: 5% 1fr 15%;
+  grid-template-columns: 33% 1fr 33%;
+  justify-content: center;
+  grid-template-areas: ". . ." ". login ." " . . .";
+}
+body #contenido #parteSuperior #main #login {
+  grid-area: login;
+  border: 1px solid black;
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
+body #contenido #parteSuperior #main #login h5 {
+  text-align: center;
+  padding: 8%;
+  margin-bottom: 0%;
+}
+body #contenido #parteSuperior #main #login form {
+  width: 70%;
+  height: 40%;
+}
+body #contenido #parteSuperior #main #login form input {
+  background-color: #ececec;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding-left: 2%;
+  border-radius: 4%;
+  border: 1px solid black;
+  width: 100%;
+  height: 20%;
+}
+body #contenido #parteSuperior #main #login form .btnLogin {
+  text-align: center;
+  width: 100%;
+  height: 20%;
+  box-shadow: inset 0px 1px 0px 0px #97c4fe;
+  background: linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+  background-color: #3d94f6;
+  border-radius: 6px;
+  border: 1px solid #337fed;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #1570cd;
+}
+body #contenido #parteSuperior #main #login form .btnLogin:hover {
+  background: linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+  background-color: #1e62d0;
+}
+body #contenido #parteSuperior #main #login form .btnLogin:active {
+  position: relative;
+  top: 1px;
+}
+body #contenido #parteSuperior #main #login p {
+  margin-top: 5%;
+}
+body #contenido #footer {
+  grid-area: footer;
+}
+
+/*# sourceMappingURL=loginStyle.css.map */
