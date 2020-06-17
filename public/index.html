@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameJob</title>
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico">
+    
     <style>
         @import url("css/loginStyle.css");
     </style>
+
+    <script src="js/login.js"></script>
+
 </head>
 <body>
 
@@ -17,7 +22,9 @@
         
             <div id="header"> 
 
-                <h1>GameJob</h1>
+                <div id="logo">
+                    <a href="index.html"><img src="img/GameJob_icono.png" ></a>
+                </div>
                 
                 <h3>Preparado para empezar tu vida como un jugador profesional?</h3>
             </div>
@@ -29,11 +36,11 @@
                 
                     <h5> Inicia sesión para encontrar el trabajo de tus sueños </h5>
                     <form>
-                        <input type="text" placeholder="Email"> <br>
+                        <input type="text" placeholder="Usuario" name="usuario"> <br>
         
-                        <input type="text" placeholder="Contraseña"> <br>
+                        <input type="password" placeholder="Contraseña" name="password"> <br>
 
-                        <button class="btnLogin">Iniciar Sesión</button>
+                        <input type="button" value="Iniciar Sesión" class="btnLogin" name="login">
                     </form>
                 
         
@@ -48,15 +55,29 @@
 
         <div id="footer">
 
-         <div id="">
+            <div id="contenidoPolitica">
 
-         </div>
-        <!-- <p>
+                <h3>Política de la Empresa</h3>
+                
+                <p><a href="">Quienés somos</a></p>
+                <p><a href="">Ayuda</a></p>
 
-             Siguenos en nuestras redes sociales para estar atento a todas nuestras ofertas de trabajo que te puedan interesar. <br>
-            Ademas de que podras tambien documentarte de nuestros cursos para hacer mejores entrevistas, curriculums, etc...
+            </div>
 
-        </p> -->
+            <div id="redes"> 
+
+                <h3>Nuestras redes sociales</h3>
+
+                <a href="https://es-es.facebook.com/" target="_blank" title="enlace a Facebook"><img src="img/facebook.png" alt="link a facebook"></a>
+                <a href="https://twitter.com/explore" target="_blank" title="enlace a Twitter"><img src="img/twitter.png" alt="link a twitter"></a>
+
+            </div>   
+
+         
+            <p class="copy">
+                &copy 2020 GameJob S.A. Todos los derechos reservados. <br>
+
+            </p> 
             
         </div>
 
