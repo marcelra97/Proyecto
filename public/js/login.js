@@ -45,11 +45,12 @@ function login(){
     let usuario = document.querySelector('input[name="usuario"]').value;
     let contraseña = document.querySelector('input[name="password"]').value;
 
-    let url = '/usuarios';
+    let url = 'api/usuarios/isValidUser'; //con esta ruta llamo al servidor por fin, lloro muy fuerte
     let data = { user: usuario, password: contraseña};
 
      fetch(url, {
              method: 'POST',
+             dataType: 'json',
              body: JSON.stringify(data), // data can be `string` or {object}!
              headers: {
                  'Content-Type': 'application/json'

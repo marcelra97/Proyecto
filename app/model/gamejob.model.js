@@ -9,5 +9,6 @@ module.exports.getConnection = function(){
     };
     
     let connection = mysql.createConnection(config);
+    
     return connection;
 };
