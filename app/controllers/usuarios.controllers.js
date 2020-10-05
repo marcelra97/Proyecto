@@ -3,7 +3,7 @@ const model = require("../model/gamejob.model.js"); // con esto estoy haciendo c
 
 // Exporto la funcion validUser para poder utilizarla fuera de la funcion
 exports.isValidUser = async (req, res) => {
-  
+
     const connection = await model.getConnection();
    
     
@@ -12,7 +12,7 @@ exports.isValidUser = async (req, res) => {
          if(!err){
           
              console.log(" Base de datos conectada");
-              let sql =  `SELECT * FROM usuarios`;
+              let sql =  `SELECT * FROM usuarios WHERE nickname = '${req.body.user}' `;
     
               connection.query(sql, (error, results, fields) => {
                  
@@ -34,8 +34,8 @@ exports.isValidUser = async (req, res) => {
     });
     
     console.log(req.body);
+
     const user = req.body;
-    console.log(user);
-    res.send(user);
+    //res.send(user);
 
 }
