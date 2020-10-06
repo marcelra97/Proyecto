@@ -8,7 +8,25 @@ module.exports.getConnection = function(){
       database : 'gamejob'
     };
     
-    let connection = mysql.createConnection(config);
+    return mysql.createConnection(config);
     
-    return connection;
 };
+
+//Esto es el encriptado de la password de cada uno de los usuarios
+module.exports.getEnCrypted = async function(str){
+
+  const bcrypt = require('bcrypt');
+
+  const saltRounds = await bcrypt.genSaltSync(13);
+
+  return await bcrypt.hashSync(str, saltRounds);
+
+}
+
+module.exports.isCorrectPassword = async function(myPlaintextPassword, hash){
+
+  const bcrypt = require('bcrypt');
+  
+  return await bcrypt.compareSync(myPlaintextPassword, hash);
+
+}

@@ -10,20 +10,47 @@ exports.isValidUser = async (req, res) => {
     connection.connect(async err => {
   
          if(!err){
-          
+
+            //console.log( await model.getEnCrypted("1234"));
+
              console.log(" Base de datos conectada");
               let sql =  `SELECT * FROM usuarios WHERE nickname = '${req.body.user}' `;
     
-              connection.query(sql, (error, results, fields) => {
-                 
+              connection.query(sql, async (error, results, fields) => {
+                
                   if (error) {
 
                     return console.error(error.message);
 
                   }
-                 
-                  res.send(results);
+                  
+                  if(results.length){
 
+                    let isCorrect = await model.isCorrectPassword(req.body.password, results[0].password);
+
+                      //Aqui entra cuando la password de ese usuario esta correcto y le devuelvo datos de la BD para poder cargar su perfil
+                     if(isCorrect){
+                        
+                        let usuarios = {
+                            
+                            id: results[0].id,
+                            nombre: results[0].nombre,
+                            apellidos: results[0].apellidos,
+                            
+
+                        }
+                        
+                       
+                     }
+
+                    res.send(results);
+
+                  }else{
+                    res.send({msg: "Usuario no valido" })
+
+                  }
+
+                  
                 });
               
                 connection.end(); 
@@ -33,9 +60,8 @@ exports.isValidUser = async (req, res) => {
          }
     });
     
-    console.log(req.body);
 
-    const user = req.body;
+   
     //res.send(user);
 
 }
