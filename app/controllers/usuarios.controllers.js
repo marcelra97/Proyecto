@@ -29,20 +29,25 @@ exports.isValidUser = async (req, res) => {
                     let isCorrect = await model.isCorrectPassword(req.body.password, results[0].password);
 
                       //Aqui entra cuando la password de ese usuario esta correcto y le devuelvo datos de la BD para poder cargar su perfil
-                     if(isCorrect){
+                    if(isCorrect){
                         
-                        let usuarios = {
+                        //crea el token de la web para la sesion del usuario
+                        let webToken = model.createWeBToken({id:results[0].id});
+
+                        let usuario = {
                             
                             id: results[0].id,
+                            nickname: results[0].nickname,
                             nombre: results[0].nombre,
                             apellidos: results[0].apellidos,
-                            
+                            email: results[0].email,
+                            token: webToken
 
                         }
                         
-                       
-                     }
+                        res.send(usuario);
 
+                    }
                     res.send(results);
 
                   }else{

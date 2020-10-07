@@ -30,3 +30,13 @@ module.exports.isCorrectPassword = async function(myPlaintextPassword, hash){
   return await bcrypt.compareSync(myPlaintextPassword, hash);
 
 }
+
+module.exports.createWeBToken = (id) => {
+
+  const jwt = require('jsonwebtoken');
+
+  return jwt.sign( id, 'dawdiw', {
+      expiresIn: 60 * 60 * 24
+  });
+  
+}
