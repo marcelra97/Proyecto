@@ -9,4 +9,8 @@ const Usuarios = require('../controllers/usuarios.controllers.js'); // con esto 
 //cuando soliciten esta ruta se activara la funcion
 router.post('/usuarios/isValidUser', Usuarios.isValidUser);
 
+router.get('/usuarios/profile', function(req, res){
+    res.render('user/userProfile')
+});
+
 module.exports = router;

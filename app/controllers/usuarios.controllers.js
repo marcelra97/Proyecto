@@ -27,30 +27,35 @@ exports.isValidUser = async (req, res) => {
                   if(results.length){
 
                     let isCorrect = await model.isCorrectPassword(req.body.password, results[0].password);
-
+                      
                       //Aqui entra cuando la password de ese usuario esta correcto y le devuelvo datos de la BD para poder cargar su perfil
                     if(isCorrect){
                         
                         //crea el token de la web para la sesion del usuario
                         let webToken = model.createWeBToken({id:results[0].id});
 
-                        let usuario = {
+                        usuario = {
                             
                             id: results[0].id,
                             nickname: results[0].nickname,
                             nombre: results[0].nombre,
                             apellidos: results[0].apellidos,
                             email: results[0].email,
-                            token: webToken
+                            token: webToken,
+                            validado: true
 
                         }
                         
                         res.send(usuario);
+                        
 
+                    }else{
+                      res.send({msg: "Usuario no valido" })
                     }
-                    res.send(results);
+                    
 
                   }else{
+
                     res.send({msg: "Usuario no valido" })
 
                   }
@@ -64,9 +69,12 @@ exports.isValidUser = async (req, res) => {
              console.log("ha fallado");
          }
     });
-    
-
-   
-    //res.send(user);
-
 }
+
+exports.profile = (req, res) =>{
+
+  console.log("ete es sech");
+}
+
+
+let usuario;
