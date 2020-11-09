@@ -10,7 +10,9 @@ const Usuarios = require('../controllers/usuarios.controllers.js'); // con esto 
 router.post('/usuarios/isValidUser', Usuarios.isValidUser);
 
 router.get('/usuarios/profile', function(req, res){
-    res.render('user/userProfile')
+    res.render('user/userProfile',{
+        styleUsuario: '/css/profile.css'
+    })
 });
 
 module.exports = router;
