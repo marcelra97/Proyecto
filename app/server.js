@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
+const passport = require('passport');
 
 //conexion a la base de datos
 const mysql = require('mysql');
@@ -22,6 +23,10 @@ app.engine('hbs', exphbs({
 }))
 app.set('view engine', 'hbs');
 
+
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // Utilizaremos body-parser para "parsear lo que nos pidan"

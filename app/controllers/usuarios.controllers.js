@@ -40,6 +40,9 @@ exports.isValidUser = async (req, res) => {
                             nickname: results[0].nickname,
                             nombre: results[0].nombre,
                             apellidos: results[0].apellidos,
+                            fecha_nacimiento: results[0].fecha_nacimiento,
+                            dni: results[0].dni,
+                            direccion: results[0].direccion,
                             email: results[0].email,
                             token: webToken,
                             validado: true
@@ -71,10 +74,52 @@ exports.isValidUser = async (req, res) => {
     });
 }
 
-exports.profile = (req, res) =>{
+//Para cargar el perfil del usuario
+exports.findUserById = async (req, res) =>{
 
-  console.log("ete es sech");
+  const connection = await model.getConnection();
+
+  connection.connect(async err => {
+    
+    if(!err){
+      
+    let sql = `SELECT * FROM usuarios WHERE id = '${req.body.id}'`;
+
+    connection.query(sql, async (error, results, fields) => {
+
+      if (error) {
+       
+        return console.error(error.message);
+
+      }
+      
+      if(results.length){
+        
+        usuario = {
+                            
+          id: results[0].id,
+          nombre: results[0].nombre,
+          apellidos: results[0].apellidos,
+          fecha_nacimiento: results[0].fecha_nacimiento,
+          dni: results[0].dni,
+          direccion: results[0].direccion,
+          email: results[0].email,
+        }
+
+        res.send(usuario);
+      }
+
+    });
+
+    connection.end();
+  
+    }else{
+      console.log("Algo ha fallado");
+    }
+  
+  });
+  
+
 }
-
 
 let usuario;

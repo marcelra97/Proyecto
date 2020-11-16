@@ -39,7 +39,7 @@ body #contenidoPagina .head #menubar ul li {
 }
 body #contenidoPagina .head #menubar ul li a {
   display: block;
-  line-height: 60px;
+  line-height: 72px;
 }
 body #contenidoPagina .head #menubar ul .botonMenu {
   text-align: center;

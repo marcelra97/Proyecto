@@ -13,7 +13,6 @@ async function enviarAlServidor(usuario, contraseña){
 
         let res1 = await fetch(url ,body);
         let res2= await res1.json();
-
         return res2;
 
 }
@@ -27,6 +26,8 @@ async function login(){
     
      if(respuesta.validado){
 
+        //Guardamos el usuario en el local storage
+        localStorage.setItem('user', respuesta.id);
         
          window.location.href = 'api/usuarios/profile';
 

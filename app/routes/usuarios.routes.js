@@ -11,8 +11,11 @@ router.post('/usuarios/isValidUser', Usuarios.isValidUser);
 
 router.get('/usuarios/profile', function(req, res){
     res.render('user/userProfile',{
-        styleUsuario: '/css/profile.css'
+        styleUsuario: '/css/profile.css',
+        usuariosjs: '/js/user.js'
     })
 });
 
+
+router.post('/usuarios/findUserById/:id', Usuarios.findUserById);
 module.exports = router;
