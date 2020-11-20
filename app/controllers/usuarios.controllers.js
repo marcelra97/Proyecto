@@ -34,20 +34,8 @@ exports.isValidUser = async (req, res) => {
                         //crea el token de la web para la sesion del usuario
                         let webToken = model.createWeBToken({id:results[0].id});
 
-                        usuario = {
-                            
-                            id: results[0].id,
-                            nickname: results[0].nickname,
-                            nombre: results[0].nombre,
-                            apellidos: results[0].apellidos,
-                            fecha_nacimiento: results[0].fecha_nacimiento,
-                            dni: results[0].dni,
-                            direccion: results[0].direccion,
-                            email: results[0].email,
-                            token: webToken,
-                            validado: true
-
-                        }
+                        const usuario = parseUser(results);
+                        usuario.token = webToken;
                         
                         res.send(usuario);
                         
@@ -95,6 +83,7 @@ exports.findUserById = async (req, res) =>{
       
       if(results.length){
         
+       
         usuario = {
                             
           id: results[0].id,
@@ -119,6 +108,32 @@ exports.findUserById = async (req, res) =>{
   
   });
   
+
+}
+
+exports.isValidToken = async (req, res) => {
+  console.log({token:req.body.token});
+
+  const isValid = model.verifyToken(req.body.token);
+
+  res.send({token:isValid});
+  
+}
+
+const parseUser = (results) => {
+
+  return{
+    
+    id: results[0].id,
+    nickname: results[0].nickname,
+    nombre: results[0].nombre,
+    apellidos: results[0].apellidos,
+    fecha_nacimiento: results[0].fecha_nacimiento,
+    dni: results[0].dni,
+    direccion: results[0].direccion,
+    email: results[0].email,
+    validado: true
+  }
 
 }
 

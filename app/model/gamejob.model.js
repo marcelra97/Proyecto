@@ -40,3 +40,13 @@ module.exports.createWeBToken = (id) => {
   });
   
 }
+
+module.exports.verifyToken = (token) => {
+
+  const jwt = require('jsonwebtoken');
+  
+  jwt.verify(token, 'dawdiw', function(err, decoded) {
+    return (decoded);
+  });
+
+}
