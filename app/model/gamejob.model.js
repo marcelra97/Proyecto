@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 module.exports.getConnection = function(){
     const mysql = require('mysql');
 
@@ -33,8 +35,6 @@ module.exports.isCorrectPassword = async function(myPlaintextPassword, hash){
 
 module.exports.createWeBToken = (id) => {
 
-  const jwt = require('jsonwebtoken');
-
   return jwt.sign( id, 'dawdiw', {
       expiresIn: 60 * 60 * 24
   });
@@ -42,8 +42,6 @@ module.exports.createWeBToken = (id) => {
 }
 
 module.exports.verifyToken = (token) => {
-
-  const jwt = require('jsonwebtoken');
   
   jwt.verify(token, 'dawdiw', function(err, decoded) {
     return (decoded);

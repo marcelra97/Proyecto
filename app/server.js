@@ -3,6 +3,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const passport = require('passport');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 //conexion a la base de datos
 const mysql = require('mysql');
@@ -23,10 +25,21 @@ app.engine('hbs', exphbs({
 }))
 app.set('view engine', 'hbs');
 
+app.use(express.urlencoded({extended: false}));
+
+//Cookies
+app.use(cookieParser('cookieSecreta'));
+
+app.use(session({
+    secret: 'cookieSecreta',
+    resave: false,
+    saveUninitialized: true
+}))
 
 //passport
 app.use(passport.initialize());
 app.use(passport.session());
+require('./config/passport');
 
 
 // Utilizaremos body-parser para "parsear lo que nos pidan"
