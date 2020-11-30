@@ -57,7 +57,7 @@ exports.isValidUser = async (req, res) => {
                 connection.end(); 
          }
          else{
-             console.log("ha fallado");
+             console.log(err);
          }
     });
 }

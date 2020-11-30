@@ -39,7 +39,11 @@ async function login(){
 function init() {
 
     document.querySelector('input[name="login"]').addEventListener("click", login);
-
+    document.querySelector("body").onkeydown = function(e){
+       if( e.keyCode == 13){
+           login();
+       }
+    }
 }
 
 
