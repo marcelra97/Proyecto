@@ -14,7 +14,7 @@ exports.isValidUser = async (req, res) => {
             //console.log( await model.getEnCrypted("1234"));
 
              console.log(" Base de datos conectada");
-              let sql =  `SELECT * FROM usuarios WHERE nickname = '${req.body.user}' `;
+              let sql =  `SELECT * FROM usuarios WHERE nickname = '${req.body.nickname}' `;
     
               connection.query(sql, async (error, results, fields) => {
                 
@@ -62,10 +62,35 @@ exports.isValidUser = async (req, res) => {
     });
 }
 
+// User by NickName, esto es para el passport
+exports.findByNickname= async (nickname) => {
+
+  const connection = await model.getConnection();
+  
+  const [rows] = await connection.execute('SELECT * FROM `usuarios` WHERE `nickname` = ?',[nickname]);
+  
+  if(rows.length){
+
+    const user = parseUser(rows)
+    return user;
+  }
+  return null;
+  
+}
+
 //Para cargar el perfil del usuario
 exports.findUserById = async (req, res) =>{
 
-  const connection = await model.getConnection();
+  /*const connection = await model.getConnection();
+
+  const [rows] = await connection.execute('SELECT * FROM `usuarios` WHERE `id` = ?',[req.body.id]);
+  
+  if(rows.length){
+
+    const user = parseUser(rows)
+    res.send(user);
+  }
+  return null;*/
 
   connection.connect(async err => {
     
@@ -111,6 +136,7 @@ exports.findUserById = async (req, res) =>{
 
 }
 
+//Saber si el token es valido
 exports.isValidToken = async (req, res) => {
   console.log({token:req.body.token});
 

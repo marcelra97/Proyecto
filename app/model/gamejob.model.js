@@ -1,7 +1,8 @@
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-module.exports.getConnection = function(){
-    const mysql = require('mysql');
+module.exports.getConnection = async function(){
+    const mysql = require('mysql2/promise');
 
     let config ={
       host     : 'localhost',
@@ -10,14 +11,12 @@ module.exports.getConnection = function(){
       database : 'gamejob'
     };
     
-    return mysql.createConnection(config);
+    return await mysql.createConnection(config);
     
 };
 
 //Esto es el encriptado de la password de cada uno de los usuarios
 module.exports.getEnCrypted = async function(str){
-
-  const bcrypt = require('bcrypt');
 
   const saltRounds = await bcrypt.genSaltSync(13);
 
@@ -27,8 +26,6 @@ module.exports.getEnCrypted = async function(str){
 
 module.exports.isCorrectPassword = async function(myPlaintextPassword, hash){
 
-  const bcrypt = require('bcrypt');
-  
   return await bcrypt.compareSync(myPlaintextPassword, hash);
 
 }

@@ -3,11 +3,20 @@ console.log("Las rutas estan cargadas");
 
 const express = require('express');
 const router = express.Router();
+const passport = require('passport')
+
 
 const Usuarios = require('../controllers/usuarios.controllers.js'); // con esto estoy exportando el fichero controllers en las rutas.
+const Model = require('../model/gamejob.model');
 
 //cuando soliciten esta ruta se activara la funcion
-router.post('/usuarios/isValidUser', Usuarios.isValidUser);
+router.post('/usuarios/isValidUser', function(req,res,next){
+    passport.authenticate('local-login', (error,user,info)=>{
+        console.log(user);
+    })(req,res,next);
+});
+
+
 
 router.get('/usuarios/profile', function(req, res){
     res.render('user/userProfile',{

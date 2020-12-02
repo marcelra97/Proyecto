@@ -6,14 +6,11 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-//conexion a la base de datos
-const mysql = require('mysql');
-
 const app = express();
 
 app.set('port', process.env.PORT || 3000);
 
-
+require('./config/passport');
 
 //Indicamos donde esta la carpeta views 
 app.set('views', path.join(__dirname, 'views'));
@@ -39,7 +36,7 @@ app.use(session({
 //passport
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport');
+
 
 
 // Utilizaremos body-parser para "parsear lo que nos pidan"

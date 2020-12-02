@@ -1,7 +1,7 @@
 async function enviarAlServidor(usuario, contraseña){
 
     let url = 'api/usuarios/isValidUser'; //con esta ruta llamo al servidor por fin, lloro muy fuerte
-    let data = { user: usuario, password: contraseña};
+    let data = { nickname: usuario, password: contraseña};
 
      let body = {
              method: 'POST',
