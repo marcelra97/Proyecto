@@ -22,17 +22,7 @@ async function loadUserInfo(localStorage) {
 
     const url = "findUserById/" + localStorage;
     
-    let data = {id: localStorage}
-
-    let body = {
-             method: 'POST',
-             body: JSON.stringify(data),
-             headers: {
-                 'Content-Type': 'application/json'
-             }
-    };
-
-    let res = await fetch(url, body);
+    let res = await fetch(url);
     let res2 = await res.json();
     return res2;
 
@@ -47,7 +37,7 @@ async function init(){
     //obtenemos la informacion del usuario
     usuario = await loadUserInfo(localStorageInfo);
 
-console.log(usuario);
+    console.log(usuario);
     mostrarUsuarioInfo(usuario);
     
 

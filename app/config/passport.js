@@ -11,9 +11,9 @@ passport.use('local-login', new LocalSrategy({
     passReqToCallback: true,
     session: false
 
-}, async (req,nickname, password, done) => {
+}, async (req, nickname, password, done) => {
     const user = await Usuarios.findByNickname(nickname);
-    done(null, user)
+    done(null, user);
     // try {
     //     const user = await Usuarios.findByNickname(nickname)      
     //     if (!user) {        
@@ -29,12 +29,14 @@ passport.use('local-login', new LocalSrategy({
     // }
 }));    
 
-// const opts = {
-//     jwtFromRequest: (req) => req.cookies.jwt,
-//     secretOrKey: 'dawdiw'
-// };
+const opts = {
+    jwtFromRequest: (req) => req.cookies.jwt,
+    secretOrKey: 'dawdiw'
+};
 
-//  passport.use(new JwtStrategy(opts, async (payload, done) => {
-//       const user = await Usuarios.findByIdByPassport(payload.id);
-//       done(null, user)
-//  }));
+passport.use(new JwtStrategy(opts, async (payload, done) => {
+    
+    const user = await Usuarios.findByIdByPassport(payload.id);
+    done(null, user)
+
+}));

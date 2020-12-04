@@ -1,6 +1,6 @@
 async function enviarAlServidor(usuario, contraseña){
 
-    let url = 'api/usuarios/isValidUser'; //con esta ruta llamo al servidor por fin, lloro muy fuerte
+    let url = 'api/usuarios/logIn'; //con esta ruta llamo al servidor por fin, lloro muy fuerte
     let data = { nickname: usuario, password: contraseña};
 
      let body = {
@@ -22,16 +22,18 @@ async function login(){
     let usuario = document.querySelector('input[name="usuario"]').value;
     let contraseña = document.querySelector('input[name="password"]').value;
 
-   let respuesta = await enviarAlServidor(usuario, contraseña);
-    
-     if(respuesta.validado){
-
+    let respuesta = await enviarAlServidor(usuario, contraseña);
+    console.log(respuesta);
+    if(respuesta.succes){
         //Guardamos el usuario en el local storage
         localStorage.setItem('user', respuesta.id);
         
-         window.location.href = 'api/usuarios/profile';
+        window.location.href = 'api/usuarios/profile';
+    }
 
-     }    
+   
+
+       
        
          
 }
