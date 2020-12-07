@@ -25,7 +25,7 @@ module.exports.getEnCrypted = async function(str){
 }
 
 module.exports.isCorrectPassword = async function(myPlaintextPassword, hash){
-
+  
   return await bcrypt.compareSync(myPlaintextPassword, hash);
 
 }

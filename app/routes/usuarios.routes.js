@@ -10,7 +10,7 @@ const Usuarios = require('../controllers/usuarios.controllers.js'); // con esto 
 const Model = require('../model/gamejob.model');
 
 const optsCookie = {
-    expires: new Date(Date.now() + 360000),
+    expires: new Date(Date.now() + 36000000),
     secure: false,
     httpOnly: false
 }
@@ -21,17 +21,18 @@ router.post('/usuarios/logIn', (req, res,next) =>{
     passport.authenticate('local-login', {session: false}, (error,user,info) => {
 
         if (error || !user) {
-            return res.send({message: 'Problemas internos'})
+            return res.status(400).send(info);
 
         }
             
         req.logIn(user, error =>{
             const token = Model.createWeBToken({
-                id:user.id,
-                nickname:user.nickname
+                id: user.id,
             });
             res.cookie("jwt", token, optsCookie);
-            res.send({succes: true, message: 'User has been logged', id: user.id});
+            info.cookies = optsCookie;
+            info.user = user;
+            res.status(200).send(info);
         })
     })(req,res,next);
 });

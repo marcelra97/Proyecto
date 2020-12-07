@@ -1,3 +1,8 @@
+function mensajeError(msg, input) {
+    
+    
+}
+
 async function enviarAlServidor(usuario, contraseña){
 
     let url = 'api/usuarios/logIn'; //con esta ruta llamo al servidor por fin, lloro muy fuerte
@@ -23,12 +28,19 @@ async function login(){
     let contraseña = document.querySelector('input[name="password"]').value;
 
     let respuesta = await enviarAlServidor(usuario, contraseña);
-    console.log(respuesta);
+    console.log("comprobando respuesta", respuesta);
+
     if(respuesta.succes){
+        
         //Guardamos el usuario en el local storage
-        localStorage.setItem('user', respuesta.id);
+        localStorage.setItem('user', respuesta.user.id);
         
         window.location.href = 'api/usuarios/profile';
+
+    }else{
+
+        mensajeError(respuesta.message);
+        
     }
 
    

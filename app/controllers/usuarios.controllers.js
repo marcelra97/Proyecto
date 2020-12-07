@@ -62,7 +62,7 @@ const parseUser = (results) => {
     dni: results[0].dni,
     direccion: results[0].direccion,
     email: results[0].email,
-    validado: true
+    password: results[0].password
   }
 
 }

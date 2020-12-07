@@ -23,7 +23,7 @@ body{
             
 
             background-color: #2f57ff;
-            grid-template-columns: 15% 1fr 35%;
+            grid-template-columns: 15% 1fr 45%;
             grid-template-areas: "logo . menulista";
             
             #logo{
@@ -33,48 +33,74 @@ body{
             #menubar{
                 
                 grid-area: menulista;
-                
 
                 ul{
-                    
-                    list-style: none;
-                    margin-top: 0%;
-                    margin-bottom: 0%;
+                    margin: 0;
                     height: 100%;
+                    list-style: none;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                   
+                    align-items: stretch;
+                    align-content: center;
+
 
                     li{
-                        display: inline-block;
-                        padding: 0 6%;
-                        margin: 0;
+                        padding-top: 3%;
+                        width: 100%;
+                        text-align: center;
                         color: white;
                         transition-property: background-color, color;
                         transition-duration:0.5s;
 
                         a{
-                            display: block;
-                            line-height: 72px;
+                            text-decoration: none;
+                            color: inherit;
                         }
                         
-                    }
-
-                    .botonMenu{
-                        text-align: center;
+                      
                     }
 
                     .botonMenu:hover{
-
+    
                         background-color: white;
                         color:  #2f57ff;
+                        text-decoration: none;
+                        
                     }
 
-                    #imgPerfil{
+                    #perfil{
 
-                        margin-left: 10%;
+                        i{
+                            margin-right: 3%;
+                        }
+
+                        .dropdown-content {
+                            display: none;
+                            position: absolute;
+                            background-color: #f1f1f1;
+                            min-width: 160px;
+                            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                            z-index: 1;
+
+                            a {
+                                color: black;
+                                padding: 12px 16px;
+                                text-decoration: none;
+                                display: block;
+                            }
+                        }
                     }
 
-                    
+                    #perfil:hover{
+                        .dropdown-content {
+                            display: block;
+                        }
+                    }
+
+                 
                 }
-               
             }
         }
 
