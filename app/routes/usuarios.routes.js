@@ -4,8 +4,6 @@ console.log("Las rutas estan cargadas");
 const express = require('express');
 const router = express.Router();
 const passport = require('passport')
-
-
 const Usuarios = require('../controllers/usuarios.controllers.js'); // con esto estoy exportando el fichero controllers en las rutas.
 const Model = require('../model/gamejob.model');
 
@@ -37,6 +35,10 @@ router.post('/usuarios/logIn', (req, res,next) =>{
     })(req,res,next);
 });
 
+router.get('/usuarios/logOut', (req, res) =>{
+    res.clearCookie("jwt");
+    return res.status(200).redirect('/');
+});
 
 
 router.get('/usuarios/profile', passport.authenticate('jwt', {session:false}), (req, res) => {
@@ -48,6 +50,15 @@ router.get('/usuarios/profile', passport.authenticate('jwt', {session:false}), (
 
 })
 
+router.get('/usuarios/newUser', (req, res) =>{
+
+    res.render('user/newUser',{
+        styleNewUser: '/css/newUser.css',
+        newUserjs: '/js/newUser.js'
+    });
+})
+
 
 router.get('/usuarios/findUserById/:id', Usuarios.findUserById);
+
 module.exports = router;

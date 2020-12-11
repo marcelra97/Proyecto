@@ -1,69 +1,84 @@
-    <div id="contenido">
+<div id="contenido">
 
-        <div id="parteSuperior">
+    <div id="parteSuperior">
 
         
-            <div id="header"> 
+        <div id="header"> 
 
-                <div id="logo">
-                    <a href="/"><img src="../img/GameJob_icono.png" ></a>
-                </div>
-                
-                <h3>Preparado para empezar tu vida como un jugador profesional?</h3>
+            <div id="logo">
+                <a href="/"><img src="../img/GameJob_icono.png" ></a>
             </div>
+                
+            <h3>Preparado para empezar tu vida como un jugador profesional?</h3>
+        </div>
        
     
-            <div id="main">
+        <div id="main">
     
-                <div id="login">
+            <div id="login" class="visible">
                 
-                    <h5> Inicia sesión para encontrar el trabajo de tus sueños </h5>
-                    <form>
-                        <input type="text" placeholder="Usuario" name="usuario"> <br>
+                <h5> Inicia sesión para encontrar el trabajo de tus sueños </h5>
+                <form>
+                    <input type="text" placeholder="Usuario" name="usuario"> <br>
         
-                        <input type="password" placeholder="Contraseña" name="password"> <br>
+                    <input type="password" placeholder="Contraseña" name="password"> <br>
 
-                        <input type="button" value="Iniciar Sesión" class="btnLogin" name="login">
-                    </form>
+                    <input type="button" value="Iniciar Sesión" class="btnLogin" name="login">
+                </form>
                 
         
-                    <p> Aun no estas registrado? <a href="">Pulsa Aqui</a> para registrarte. </p>
+                <p> Aun no estas registrado? <a id="newUser">Pulsa Aqui</a> para registrarte. </p>
     
-                </div>
+            </div>
+
+            <div id="divNewUser" class="invisible">
+
+               <div id="selectUser"> 
+                    <p>Por favor indique si es un equipo profesional o un jugador</p>
+                    <label><input type="radio" name="user" value="equipo">Equipo Profesional</label>
+                    <label><input type="radio" name="user" value="jugador">Jugador</label>
+               </div>
+
+               <form id="formNewUser">
+
+               </form>
+               
+            </div>
            
     
-            </div>
-
-        </div>
-
-        <div id="footer">
-
-            <div id="contenidoPolitica">
-
-                <h3>Política de la Empresa</h3>
-                
-                <p><a href="">Quienés somos</a></p>
-                <p><a href="">Ayuda</a></p>
-
-            </div>
-
-            <div id="redes"> 
-
-                <h3>Nuestras redes sociales</h3>
-
-                <a href="https://es-es.facebook.com/" target="_blank" title="enlace a Facebook"><img src="../img/facebook.png" alt="link a facebook"></a>
-                <a href="https://twitter.com/explore" target="_blank" title="enlace a Twitter"><img src="../img/twitter.png" alt="link a twitter"></a>
-
-            </div>   
-
-         
-            <p class="copy">
-                &copy 2020 GameJob S.A. Todos los derechos reservados. <br>
-
-            </p> 
-            
         </div>
 
     </div>
+
+
+    <div id="footer">
+
+        <div id="contenidoPolitica">
+
+            <h3>Política de la Empresa</h3>
+                
+            <p><a href="">Quienés somos</a></p>
+            <p><a href="">Ayuda</a></p>
+
+        </div>
+
+        <div id="redes"> 
+
+            <h3>Nuestras redes sociales</h3>
+
+            <a href="https://es-es.facebook.com/" target="_blank" title="enlace a Facebook"><img src="../img/facebook.png" alt="link a facebook"></a>
+            <a href="https://twitter.com/explore" target="_blank" title="enlace a Twitter"><img src="../img/twitter.png" alt="link a twitter"></a>
+
+        </div>   
+
+         
+        <p class="copy">
+            &copy 2020 GameJob S.A. Todos los derechos reservados. <br>
+
+        </p> 
+            
+    </div>
+
+</div>
    
 

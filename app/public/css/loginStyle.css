@@ -6,9 +6,9 @@ body {
 body #contenido {
   height: 110vh;
   display: grid;
-  grid-template-columns: 25% 1fr 25%;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr 20%;
-  grid-template-areas: "parteSuperior parteSuperior parteSuperior" "footer footer footer";
+  grid-template-areas: "parteSuperior" "footer";
 }
 body #contenido #parteSuperior {
   display: grid;
@@ -37,17 +37,15 @@ body #contenido #parteSuperior #header h3 {
 }
 body #contenido #parteSuperior #main {
   grid-area: main;
-  display: grid;
-  grid-template-rows: 5% 1fr 15%;
-  grid-template-columns: 33% 1fr 33%;
+  display: flex;
   justify-content: center;
-  grid-template-areas: ". . ." ". login ." " . . .";
 }
 body #contenido #parteSuperior #main #login {
-  grid-area: login;
+  width: 30%;
+  height: 80%;
+  align-self: center;
   border: 1px solid black;
   border-radius: 5%;
-  display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 6px 6px 8px 1px rgba(0, 0, 0, 0.75);
@@ -101,6 +99,42 @@ body #contenido #parteSuperior #main #login form .btnLogin:active {
 body #contenido #parteSuperior #main #login p {
   margin-top: 10%;
 }
+body #contenido #parteSuperior #main #login p a {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+body #contenido #parteSuperior #main #login p a:visited {
+  color: blueviolet;
+}
+body #contenido #parteSuperior #main #divNewUser {
+  width: 60%;
+  height: 80%;
+  border-radius: 4%;
+  background-color: white;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+body #contenido #parteSuperior #main #divNewUser #selectUser {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 20%;
+  width: 100%;
+  text-align: center;
+}
+body #contenido #parteSuperior #main #divNewUser #selectUser p {
+  width: 100%;
+}
+body #contenido #parteSuperior #main #divNewUser #selectUser label {
+  margin-left: 3%;
+}
+body #contenido #parteSuperior #main #divNewUser #formNewUser {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 body #contenido #footer {
   grid-area: footer;
   display: grid;
@@ -138,6 +172,14 @@ body #contenido #footer .copy {
   grid-area: p;
   margin-left: 5%;
   margin-bottom: 1;
+}
+
+.visible {
+  display: flex;
+}
+
+.invisible {
+  display: none;
 }
 
 .correcto {

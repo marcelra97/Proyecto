@@ -1,5 +1,10 @@
 const model = require("../model/gamejob.model.js"); // con esto estoy haciendo conexion con la base de datos mediante lo que tengo configurado en el modelo
 
+exports.newUser = async (req, res) =>{
+console.log("newUser");
+}
+
+
 // User by NickName, esto es para el passport
 exports.findByNickname= async (nickname) => {
 

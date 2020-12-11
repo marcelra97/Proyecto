@@ -1,3 +1,26 @@
+function createDivNewUser(){
+
+   //aparece y desaparece el creador de usuarios 
+  let divLog = document.getElementById("login");  
+  let divPrincipal = document.getElementById("divNewUser");
+  divPrincipal.classList.add("visible");
+  divPrincipal.classList.remove("invisible");
+
+  divLog.classList.add("invisible");
+  divLog.classList.remove("visible");
+
+  //creando el form del newUsers
+    
+  if(document.querySelector('input[name="user"]').checked){
+    console.log(document.querySelector('input[name="user"]').checked);
+  }
+ 
+
+
+  let formNewUser =document.getElementById("formNewUser")
+  let int = document.createElement("input");
+}
+//TODO
 function mensajeError(msg, input) {
     
     
@@ -39,15 +62,11 @@ async function login(){
 
     }else{
 
+        //TODO
         mensajeError(respuesta.message);
         
     }
-
-   
-
        
-       
-         
 }
 
 function init() {
@@ -58,6 +77,7 @@ function init() {
            login();
        }
     }
+    document.getElementById("newUser").addEventListener("click", createDivNewUser);
 }
 
 

@@ -7,20 +7,16 @@
     </div>
 
     <nav id="menubar">
-        <ul>
-            <li id="oferta" class="botonMenu"><a>Ofertas</a></li>
-            <li id="blog" class="botonMenu"><a>Blogs</a></li>
-            <li id="soporte" class="botonMenu"><a>Soporte</a></li>
-            <li id="perfil" class="botonMenu">
-                <a href="profile"><i class="fas fa-user"></i>Perfil</a>
+        <button id="oferta" class="botonMenu" value="/api/ofertas">Ofertas</button>
+        <button id="blog" class="botonMenu" value="/api/blogs">Blogs</button>
+        <button id="soporte" class="botonMenu" value="/api/soporte">Soporte</button>
+        <button id="perfil" class="botonMenu" value="/api/usuarios/profile"><i class="fas fa-user"></i>Perfil
+            
+            <div class="dropdown-content">
+                    <a href="/api/usuarios/configuracion" id="configuracion" class="dropButton"><i class="fas fa-cog"></i>Configuración</a>
+                    <a href="/api/usuarios/logOut" id="salir" class="dropButton"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a>
+            </div>
 
-                <div class="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-                
-            </li>
-        </ul>
+        </button>
     </nav>
 </div>    

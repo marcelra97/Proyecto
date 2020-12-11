@@ -33,74 +33,68 @@ body{
             #menubar{
                 
                 grid-area: menulista;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: stretch;
+                align-content: center;
 
-                ul{
-                    margin: 0;
-                    height: 100%;
-                    list-style: none;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-evenly;
-                   
-                    align-items: stretch;
-                    align-content: center;
-
-
-                    li{
-                        padding-top: 3%;
-                        width: 100%;
-                        text-align: center;
-                        color: white;
-                        transition-property: background-color, color;
-                        transition-duration:0.5s;
-
-                        a{
-                            text-decoration: none;
-                            color: inherit;
-                        }
-                        
-                      
-                    }
-
-                    .botonMenu:hover{
-    
-                        background-color: white;
-                        color:  #2f57ff;
-                        text-decoration: none;
-                        
-                    }
-
-                    #perfil{
-
-                        i{
-                            margin-right: 3%;
-                        }
-
-                        .dropdown-content {
-                            display: none;
-                            position: absolute;
-                            background-color: #f1f1f1;
-                            min-width: 160px;
-                            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                            z-index: 1;
-
-                            a {
-                                color: black;
-                                padding: 12px 16px;
-                                text-decoration: none;
-                                display: block;
-                            }
-                        }
-                    }
-
-                    #perfil:hover{
-                        .dropdown-content {
-                            display: block;
-                        }
-                    }
-
-                 
+                button{
+                    width: 100%;
+                    background-color: transparent;
+                    border: none;
+                    cursor:pointer;
+                    font-size: 100%;
+                    color: white;
+                    transition-property: background-color, color;
+                    transition-duration:0.5s;
                 }
+
+                .botonMenu:hover{
+    
+                    background-color: white;
+                    color:  #2f57ff;
+                    text-decoration: none;
+                    
+                }
+
+                #perfil{
+
+                    i{
+                        margin-right: 3%;
+                    }
+
+                    .dropdown-content {
+                        display: none;
+                        position: absolute;
+                        background-color: #f1f1f1;
+                        min-width: 200px;
+                        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                        z-index: 1;
+                        margin-top: 1.5% ;
+
+                        a {
+                            color: black;
+                            padding: 12px 16px;
+                            text-decoration: none;
+                            display: block;
+                            transition-property: background-color;
+                            transition-duration: 0.3s;
+                        }
+
+                        .dropButton:hover{
+                            background-color: white;
+                        }
+                    }
+
+                }
+
+                #perfil:hover{
+                    .dropdown-content {
+                        display: block;
+                    }
+                }
+                
             }
         }
 

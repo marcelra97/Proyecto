@@ -28,6 +28,11 @@ async function loadUserInfo(localStorage) {
 
 }
 
+function redireccionMenu(event){
+
+    window.location.href = event.target.attributes.value.nodeValue;
+    
+}
 
 async function init(){
 
@@ -36,10 +41,14 @@ async function init(){
     
     //obtenemos la informacion del usuario
     usuario = await loadUserInfo(localStorageInfo);
-
-    console.log(usuario);
     mostrarUsuarioInfo(usuario);
     
+    //Botones del Menu
+    document.querySelectorAll(".botonMenu").forEach(boton =>{
+
+            boton.addEventListener('click', redireccionMenu);
+
+    })
 
 }
 
