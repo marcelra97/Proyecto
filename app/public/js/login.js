@@ -189,17 +189,22 @@ function createFormNewUser(e){
     boton.addEventListener("click", crearUsuario);
 }
 
-function newUser(){
+function cambioDiv(divVisible, divInvisible){
   
    //aparece y desaparece el creador de usuarios 
-  let divLog = document.getElementById("login");  
-  let divPrincipal = document.getElementById("divNewUser");
-  divPrincipal.classList.add("visible");
-  divPrincipal.classList.remove("invisible");
+   console.log(divVisible);
 
-  divLog.classList.add("invisible");
-  divLog.classList.remove("visible");
-  
+   divVisible.classList.add("visible");
+   divVisible.classList.remove("invisible");
+
+   divInvisible.classList.add("invisible");
+   divInvisible.classList.remove("visible");
+   document.querySelector(".btnAtras").addEventListener("click",() =>{
+      
+    cambioDiv(divInvisible,divVisible)}
+
+    );
+    
 }
 
 //TODO
@@ -259,13 +264,20 @@ function init() {
            login();
        }
     }
+
+    let divLog = document.getElementById("login");  
+    let divPrincipal = document.getElementById("divNewUser");
     
     document.getElementById("newUser").addEventListener("click", async() => {
         
-        await newUser();
+        await cambioDiv(divPrincipal, divLog);
+
         document.querySelector('input[value="equipo"]').addEventListener("change", createFormNewUser);
         document.querySelector('input[value="jugador"]').addEventListener("change", createFormNewUser);
+       
+
     });
+    
 }
 
 
