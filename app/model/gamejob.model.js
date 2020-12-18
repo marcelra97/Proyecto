@@ -16,17 +16,17 @@ module.exports.getConnection = async function(){
 };
 
 //Esto es el encriptado de la password de cada uno de los usuarios
-module.exports.getEnCrypted = async function(str){
+module.exports.getEnCrypted = function(password){
+  
+  const saltRounds =  bcrypt.genSaltSync(13);
 
-  const saltRounds = await bcrypt.genSaltSync(13);
-
-  return await bcrypt.hashSync(str, saltRounds);
+  return  bcrypt.hashSync(password, saltRounds);
 
 }
 
-module.exports.isCorrectPassword = async function(myPlaintextPassword, hash){
+module.exports.isCorrectPassword = function(myPlaintextPassword, hash){
   
-  return await bcrypt.compareSync(myPlaintextPassword, hash);
+  return  bcrypt.compareSync(myPlaintextPassword, hash);
 
 }
 

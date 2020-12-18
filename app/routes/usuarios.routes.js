@@ -41,24 +41,22 @@ router.get('/usuarios/logOut', (req, res) =>{
 });
 
 
-router.get('/usuarios/profile', passport.authenticate('jwt', {session:false}), (req, res) => {
+router.post('/usuarios/profile', passport.authenticate('jwt', {session:false}), (req, res) => {
     
-    res.render('user/userProfile',{
-        styleUsuario: '/css/profile.css',
-        usuariosjs: '/js/user.js'
-    });
+    if(req.body.tipo == "jugador"){
+        res.render('user/userProfile',{
+            styleUsuario: '/css/profile.css',
+            usuariosjs: '/js/user.js'
+        });
+    }
+    
+    if(req.body.tipo == "equipo"){
+
+    }
 
 })
 
-router.get('/usuarios/newUser', (req, res) =>{
-
-    res.render('user/newUser',{
-        styleNewUser: '/css/newUser.css',
-        newUserjs: '/js/newUser.js'
-    });
-})
-
-
+router.post('/usuarios/createNewUser', Usuarios.newUser);
 router.get('/usuarios/findUserById/:id', Usuarios.findUserById);
 
 module.exports = router;

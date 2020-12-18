@@ -46,7 +46,7 @@ async function init(){
     //Botones del Menu
     document.querySelectorAll(".botonMenu").forEach(boton =>{
 
-            boton.addEventListener('click', redireccionMenu);
+        boton.addEventListener('click', redireccionMenu);
 
     })
 

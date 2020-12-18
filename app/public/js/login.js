@@ -1,5 +1,58 @@
-function crearUsuario() {
+async function crearUsuario(tipoUsuario) {
     
+    let nombreUsuario = document.querySelector('input[name="nickname"]').value;
+    let password = document.querySelector('input[name="contraseña"]').value;
+    let rePassword = document.querySelector('input[name="passwordRepetida"]').value;
+    let direccion = document.querySelector('input[name="direccion"]').value;
+    let mail = document.querySelector('input[name="email"]').value;
+    let url = "/api/usuarios/createNewUser";
+    let urlProfile ="api/usuarios/profile"
+    
+
+    if(password == rePassword){
+
+        if(tipoUsuario == "equipo"){
+
+            
+            let nombreEquipo = document.querySelector('input[name="equipo"]').value;
+    
+            let dataEquipo = {nick:nombreUsuario, pws:password, equipo:nombreEquipo, drc:direccion, email:mail, tipo:tipoUsuario}
+           
+            let respuestaEquipo =  await enviarAlServidorPost(dataEquipo, url);
+            
+            if(respuestaEquipo == true){
+
+                localStorage.setItem('user', respuestaEquipo.id);
+                
+                await enviarAlServidorPost(dataEquipo, urlProfile)
+            }
+        }
+    
+        if(tipoUsuario == "jugador"){
+    
+            let nombreReal = document.querySelector('input[name="nombre"]').value;
+            let apellido = document.querySelector('input[name="apellidos"]').value;
+            let nacimiento = document.querySelector('input[name="nacimiento"]').value;
+            let dni = document.querySelector('input[name="dni"]').value;
+    
+            let dataUsuario = {nick:nombreUsuario, pws:password, nombre:nombreReal, apellidos:apellido, drc:direccion, ncm:nacimiento, nif:dni, email:mail, tipo:tipoUsuario}
+
+            let respuestaJugador = await enviarAlServidorPost(dataUsuario, url);
+            
+            if(respuestaJugador.validacion == true){
+
+                localStorage.setItem('user', respuestaJugador.id);
+                
+                await enviarAlServidorPost(dataUsuario, urlProfile)
+            }
+        }
+
+    }else{
+
+        mensajeError();
+    }
+
+
 }
 
 //Div del formulario
@@ -31,7 +84,7 @@ function createFormNewUser(e){
     let inputPassword = document.createElement("input");
     inputPassword.setAttribute("type","text");
     inputPassword.setAttribute("placeholder", "Contraseña");
-    inputPassword.setAttribute("name", "password");
+    inputPassword.setAttribute("name", "contraseña");
 
     //Repetir Password
     let divRePassword = document.createElement("div");
@@ -186,25 +239,23 @@ function createFormNewUser(e){
     }
 
     divBoton.appendChild(boton);
-    boton.addEventListener("click", crearUsuario);
+    boton.addEventListener("click", () =>{crearUsuario(e.target.value)});
 }
 
+//aparece y desaparece el creador de usuarios 
 function cambioDiv(divVisible, divInvisible){
   
-   //aparece y desaparece el creador de usuarios 
-   console.log(divVisible);
-
    divVisible.classList.add("visible");
    divVisible.classList.remove("invisible");
 
    divInvisible.classList.add("invisible");
    divInvisible.classList.remove("visible");
    document.querySelector(".btnAtras").addEventListener("click",() =>{
-      
-    cambioDiv(divInvisible,divVisible)}
-
-    );
-    
+        let divForm = document.getElementById("divNewUser");
+        divForm.childNodes[5].innerHTML="";
+        cambioDiv(divInvisible,divVisible);
+   });
+   
 }
 
 //TODO
@@ -213,11 +264,11 @@ function mensajeError(msg, input) {
     
 }
 
-async function enviarAlServidor(usuario, contraseña){
+//enviar datos al servidor
+async function enviarAlServidorPost(data, url){
+    console.log("holaa");
 
-    let url = 'api/usuarios/logIn'; //con esta ruta llamo al servidor por fin, lloro muy fuerte
-    let data = { nickname: usuario, password: contraseña};
-
+     //con esta ruta llamo al servidor por fin, lloro muy fuerte
      let body = {
              method: 'POST',
              body: JSON.stringify(data),
@@ -232,12 +283,16 @@ async function enviarAlServidor(usuario, contraseña){
 
 }
 
+//Parte del login
 async function login(){
 
     let usuario = document.querySelector('input[name="usuario"]').value;
     let contraseña = document.querySelector('input[name="password"]').value;
 
-    let respuesta = await enviarAlServidor(usuario, contraseña);
+    let data = { nickname: usuario, password: contraseña};
+    let url = 'api/usuarios/logIn';
+
+    let respuesta = await enviarAlServidorPost(data, url);
     console.log("comprobando respuesta", respuesta);
 
     if(respuesta.succes){
@@ -271,11 +326,9 @@ function init() {
     document.getElementById("newUser").addEventListener("click", async() => {
         
         await cambioDiv(divPrincipal, divLog);
-
         document.querySelector('input[value="equipo"]').addEventListener("change", createFormNewUser);
         document.querySelector('input[value="jugador"]').addEventListener("change", createFormNewUser);
-       
-
+         
     });
     
 }
