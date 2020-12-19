@@ -9,13 +9,13 @@ passport.use('local-login', new LocalSrategy({
     usernameField: 'nickname',
     passwordField: 'password'
 }, async ( nickname, password, done) => {
-    // const user = await Usuarios.findByNickname(nickname);
-    // done(null, user);
     
     try {
+       
         const user = await Usuarios.findByNickname(nickname);
         
-        if (!user) {        
+        if (!user) {     
+               
             return done(null, false, { succes: false, message: `El usuario ${nickname} no existe.` })
         }
         
@@ -23,7 +23,7 @@ passport.use('local-login', new LocalSrategy({
                  
             return done(null, false, { succes: false, message: `Las contraseña no es correcta.` })         
         }
-        done(null, { id: user.id }, { succes: true, message: 'El usuario ha sido logeado correctamente.' })
+        done(null, { id: user.id, tipo: user.tipo }, { succes: true, message: 'El usuario ha sido logeado correctamente.' })
     }
     catch(error) {
          done(error, false, { succes: false, message: 'Problemas internos.' })

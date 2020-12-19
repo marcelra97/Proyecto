@@ -15,12 +15,11 @@ const optsCookie = {
 
 //cuando soliciten esta ruta se activara la funcion
 router.post('/usuarios/logIn', (req, res,next) =>{
-
+    
     passport.authenticate('local-login', {session: false}, (error,user,info) => {
 
         if (error || !user) {
             return res.status(400).send(info);
-
         }
             
         req.logIn(user, error =>{
@@ -41,22 +40,23 @@ router.get('/usuarios/logOut', (req, res) =>{
 });
 
 
-router.post('/usuarios/profile', passport.authenticate('jwt', {session:false}), (req, res) => {
+router.get('/usuarios/profile/:tipo', passport.authenticate('jwt', {session:false}), (req, res) => {
     
-    if(req.body.tipo == "jugador"){
+    if(req.params.tipo == "jugador"){
+       
         res.render('user/userProfile',{
             styleUsuario: '/css/profile.css',
             usuariosjs: '/js/user.js'
         });
     }
     
-    if(req.body.tipo == "equipo"){
-
+    if(req.params.tipo == "equipo"){
+        console.log("logueado en equipo");
     }
 
 })
 
 router.post('/usuarios/createNewUser', Usuarios.newUser);
-router.get('/usuarios/findUserById/:id', Usuarios.findUserById);
+router.get('/usuarios/profile/findUserById/:id', Usuarios.findUserById);
 
 module.exports = router;

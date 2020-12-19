@@ -18,13 +18,12 @@ async function crearUsuario(tipoUsuario) {
     
             let dataEquipo = {nick:nombreUsuario, pws:password, equipo:nombreEquipo, drc:direccion, email:mail, tipo:tipoUsuario}
            
+            //crear el usuario
             let respuestaEquipo =  await enviarAlServidorPost(dataEquipo, url);
-            
+           
+            //loguaerlo directamente
             if(respuestaEquipo == true){
-
-                localStorage.setItem('user', respuestaEquipo.id);
-                
-                await enviarAlServidorPost(dataEquipo, urlProfile)
+                login(nombreUsuario, password); 
             }
         }
     
@@ -36,14 +35,13 @@ async function crearUsuario(tipoUsuario) {
             let dni = document.querySelector('input[name="dni"]').value;
     
             let dataUsuario = {nick:nombreUsuario, pws:password, nombre:nombreReal, apellidos:apellido, drc:direccion, ncm:nacimiento, nif:dni, email:mail, tipo:tipoUsuario}
-
+            
+            //crear el usuario
             let respuestaJugador = await enviarAlServidorPost(dataUsuario, url);
             
+            //loguaerlo directamente
             if(respuestaJugador.validacion == true){
-
-                localStorage.setItem('user', respuestaJugador.id);
-                
-                await enviarAlServidorPost(dataUsuario, urlProfile)
+                login(nombreUsuario, password);
             }
         }
 
@@ -266,7 +264,6 @@ function mensajeError(msg, input) {
 
 //enviar datos al servidor
 async function enviarAlServidorPost(data, url){
-    console.log("holaa");
 
      //con esta ruta llamo al servidor por fin, lloro muy fuerte
      let body = {
@@ -284,10 +281,7 @@ async function enviarAlServidorPost(data, url){
 }
 
 //Parte del login
-async function login(){
-
-    let usuario = document.querySelector('input[name="usuario"]').value;
-    let contraseña = document.querySelector('input[name="password"]').value;
+async function login(usuario, contraseña){
 
     let data = { nickname: usuario, password: contraseña};
     let url = 'api/usuarios/logIn';
@@ -300,7 +294,7 @@ async function login(){
         //Guardamos el usuario en el local storage
         localStorage.setItem('user', respuesta.user.id);
         
-        window.location.href = 'api/usuarios/profile';
+        window.location.href = 'api/usuarios/profile/' + respuesta.user.tipo;
 
     }else{
 
@@ -313,10 +307,16 @@ async function login(){
 
 function init() {
 
-    document.querySelector('input[name="login"]').addEventListener("click", login);
+    let inputusuario = document.querySelector('input[name="usuario"]');
+    let inputcontraseña = document.querySelector('input[name="password"]');
+
+    document.querySelector('input[name="login"]').addEventListener("click", ()=>{
+        login(inputusuario.value, inputcontraseña.value);
+    });
+
     document.querySelector("body").onkeydown = function(e){
        if( e.keyCode == 13){
-           login();
+           login(inputusuario.value, inputcontraseña.value);
        }
     }
 
