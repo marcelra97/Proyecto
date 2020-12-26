@@ -152,12 +152,12 @@ body #contenido #parteSuperior #main #divNewUser #selectUser label {
   margin-left: 3%;
 }
 body #contenido #parteSuperior #main #divNewUser #error-newUser {
-  width: 30%;
+  width: 60%;
   height: 4%;
   background-color: #E23C1B;
   text-align: center;
   color: white;
-  margin-left: 35%;
+  margin-left: 20%;
 }
 body #contenido #parteSuperior #main #divNewUser #error-newUser i {
   margin-right: 1%;

@@ -1,3 +1,17 @@
+function compararPasswords(pass, repass){
+    let msg;
+    console.log(pass, repass);
+    if (pass == repass){
+        msg = 'correcto';
+        quitarError("newUser", "contraseña")
+        quitarError("newUser", "passwordRepetida")
+    }else{
+        msg = 'Las contraseñas no coinciden';
+    }
+
+    return msg;
+}
+
 function quitarError(divinput, input){
 
     let divError = document.getElementById("error-"+ divinput);
@@ -21,6 +35,43 @@ function mensajeError(msg, divinput, input) {
     divError.classList.remove("invisible");
     inputError.classList.add("incorrecto");
     
+}
+
+
+function validatePassword(password) {
+    //Should have 1 lowercase letter, 1 uppercase letter, 1 number, and be at least 8 characters long
+    const passwordRegex = /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/
+    let msg;
+
+    if (password.length == 0){
+
+        msg = 'Debe rellenar este campo';
+
+    }else if (passwordRegex.test(password)){
+
+        msg = 'correcto';
+
+    }else{
+
+        msg = 'La contraseña debe contener al menos 8 carácteres, 1 minuscula, 1 mayuscula y 1 número';
+
+    } 
+
+    return msg;
+}
+
+
+function validarInputs(input) {
+    let msg;
+
+    if(input.length == 0){
+        msg = 'Debe rellenar este campo';
+
+    }else{
+        msg = 'correcto';
+    }
+
+    return msg;
 }
 
 function validateNickname (nickname) {
@@ -97,7 +148,8 @@ async function verificacion() {
     let msg;
     let url; 
     let data;
-    let comprobacion;
+    let comprobacion;   
+    
 
     //comprobar el nickname
     if(this.name == "nickname"){
@@ -127,7 +179,7 @@ async function verificacion() {
         }
 
     //comprobar los nombres    
-    }else if(this.name == "nombre" || this.name == "apellido" || this.name == "equipo"){
+    }else if(this.name == "nombre" || this.name == "apellidos" || this.name == "equipo"){
 
         validacion = validarNombre(this.value);
 
@@ -167,8 +219,72 @@ async function verificacion() {
            
         }
 
-    }else if(this.name == "password"){
+        //compraobacion password
+    }else if(this.name == "contraseña"){
 
+        validacion = validatePassword(this.value);
+        pass = this.value;
+       
+        if(validacion != "correcto"){
+
+            mensajeError(validacion,"newUser",this.name);
+
+        }else{
+            quitarError("newUser", this.name);
+
+           
+            if(repass == ""){
+                msg = "Repita la pasword, por favor";
+
+                mensajeError(msg,"newUser",this.name);
+
+            }else{
+               
+               validacion = compararPasswords(pass, repass); 
+
+               if(validacion != "correcto"){
+                
+                mensajeError(validacion,"newUser",this.name);
+               }
+
+            }
+        }
+    
+      //comprobar la password repetida
+    }else if(this.name == "passwordRepetida"){
+        
+        repass = this.value;
+            
+        if(pass == ""){
+            msg = "Escriba la password antes, por favor";
+
+            mensajeError(msg,"newUser",this.name);
+
+        }else{
+               
+            validacion = compararPasswords(pass, repass); 
+
+            if(validacion != "correcto"){
+               
+                mensajeError(validacion,"newUser",this.name);
+            }
+
+        }
+        
+    
+    //el resto 
+    }else if(this.name == "direccion" || this.name == "dni" || this.name == "nacimiento" || this.name == "creacionEquipo"){
+        validacion = validarInputs(this.value);
+
+        if(validacion != "correcto"){
+
+            mensajeError(validacion,"newUser",this.name);
+
+        }else{
+
+            quitarError("newUser", this.name);
+
+        }
     }
 
 }
@@ -452,6 +568,9 @@ function cambioDiv(divVisible, divInvisible){
    document.querySelector(".btnAtras").addEventListener("click",() =>{
         let divForm = document.getElementById("divNewUser");
         divForm.childNodes[5].innerHTML="";
+        divForm.childNodes[5].classList.add("invisible");
+        divForm.childNodes[7].innerHTML="";
+        console.log(divForm);
         cambioDiv(divInvisible,divVisible);
    });
    
@@ -530,6 +649,7 @@ function init() {
     
 }
 
-
+let pass;
+let repass;
 
 window.onload = init;
