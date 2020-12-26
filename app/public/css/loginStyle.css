@@ -56,6 +56,16 @@ body #contenido #parteSuperior #main #login h5 {
   padding: 8%;
   margin-bottom: 0%;
 }
+body #contenido #parteSuperior #main #login #error-login {
+  width: 60%;
+  height: 5%;
+  background-color: #E23C1B;
+  text-align: center;
+  color: white;
+}
+body #contenido #parteSuperior #main #login #error-login i {
+  margin-right: 1%;
+}
 body #contenido #parteSuperior #main #login form {
   width: 70%;
   height: 40%;
@@ -66,7 +76,6 @@ body #contenido #parteSuperior #main #login form input {
   margin-bottom: 5%;
   padding-left: 2%;
   border-style: solid;
-  border-color: #ccc;
   border-radius: 25px;
   width: 100%;
   height: 20%;
@@ -114,7 +123,7 @@ body #contenido #parteSuperior #main #login p a:visited {
 }
 body #contenido #parteSuperior #main #divNewUser {
   width: 60%;
-  height: 80%;
+  height: 90%;
   border-radius: 4%;
   background-color: white;
   flex-wrap: wrap;
@@ -142,6 +151,17 @@ body #contenido #parteSuperior #main #divNewUser #selectUser p {
 body #contenido #parteSuperior #main #divNewUser #selectUser label {
   margin-left: 3%;
 }
+body #contenido #parteSuperior #main #divNewUser #error-newUser {
+  width: 30%;
+  height: 4%;
+  background-color: #E23C1B;
+  text-align: center;
+  color: white;
+  margin-left: 35%;
+}
+body #contenido #parteSuperior #main #divNewUser #error-newUser i {
+  margin-right: 1%;
+}
 body #contenido #parteSuperior #main #divNewUser #formNewUser {
   display: flex;
   flex-wrap: wrap;
@@ -155,7 +175,6 @@ body #contenido #parteSuperior #main #divNewUser #formNewUser .label-info {
 }
 body #contenido #parteSuperior #main #divNewUser #formNewUser .label-info input {
   border-style: solid;
-  border-color: #ccc;
   background-color: #ececec;
   border-radius: 25px;
   width: 85%;
@@ -244,12 +263,8 @@ body #contenido #footer .copy {
   display: none;
 }
 
-.correcto {
-  border: green;
-}
-
 .incorrecto {
-  border: 1px solid red;
+  border-color: red;
 }
 
 /*# sourceMappingURL=loginStyle.css.map */

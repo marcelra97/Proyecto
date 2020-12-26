@@ -13,15 +13,14 @@ passport.use('local-login', new LocalSrategy({
     try {
        
         const user = await Usuarios.findByNickname(nickname);
-        
         if (!user) {     
-               
-            return done(null, false, { succes: false, message: `El usuario ${nickname} no existe.` })
+        
+            return done(null, false, { input:"usuario", succes: false, message: `El usuario ${nickname} no existe.` })
         }
         
         if (!await Model.isCorrectPassword(password, user.password)) {   
                  
-            return done(null, false, { succes: false, message: `Las contraseña no es correcta.` })         
+            return done(null, false, { input:"password", succes: false, message: `Las contraseña no es correcta.` })         
         }
         done(null, { id: user.id, tipo: user.tipo }, { succes: true, message: 'El usuario ha sido logeado correctamente.' })
     }

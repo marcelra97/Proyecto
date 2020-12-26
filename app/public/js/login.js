@@ -1,3 +1,178 @@
+function quitarError(divinput, input){
+
+    let divError = document.getElementById("error-"+ divinput);
+    let inputError = document.querySelector("input[name="+input+"]");
+
+    if(!divError.classList.contains("invisible")){
+        divError.classList.add("invisible");
+        inputError.classList.remove("incorrecto");
+    }
+
+}
+
+function mensajeError(msg, divinput, input) {
+   
+    let divError = document.getElementById("error-"+ divinput);
+    let inputError = document.querySelector("input[name="+input+"]");
+    
+    divError.innerHTML =
+    '<i class="fas fa-exclamation-circle" ></i>' +
+    '<span>' + msg + '</span>';
+    divError.classList.remove("invisible");
+    inputError.classList.add("incorrecto");
+    
+}
+
+function validateNickname (nickname) {
+    
+    const nicknameRegex = /^[A-z0-9_-]{3,16}$/
+    let msg;
+    
+    if (nicknameRegex.test(nickname)){
+        msg = 'correcto';
+
+    }else{
+
+        if (nickname.length == 0){
+
+            msg = 'Debe rellenar este campo';
+
+        } 
+        else if (nickname.length < 3){
+
+            msg = 'Este campo debe tener mínimo 3 carácteres';
+
+        }else{
+            msg = 'Este campo puede tener máximo 16 carácteres';
+        }
+    };
+
+    return msg;
+}
+
+function validarNombre (name) {
+
+    const nameRegex = /^([A-zÑÁÉÍÓÚ]+[\s]*)+$/
+    let msg;
+
+    if (!nameRegex.test(name)) {
+
+        if (name.length == 0){
+
+            msg = 'Debe rellenar este campo';
+
+        }else{
+            msg = 'Este campo solo puede contener letras';
+        } 
+
+    }else{
+        msg = 'correcto';
+    } 
+
+    return msg;
+}
+
+function validarEmail (email) {
+
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    let msg;
+
+    if (email.length == 0){
+
+        msg = 'Debe rellenar este campo';
+
+    }else if (!emailRegex.test(email)){
+
+        msg = 'Formato de email incorrecto';
+
+    }else{
+        msg = 'correcto';
+    } 
+
+    return msg;
+}
+
+async function verificacion() {
+    let validacion;
+    let msg;
+    let url; 
+    let data;
+    let comprobacion;
+
+    //comprobar el nickname
+    if(this.name == "nickname"){
+
+       validacion = validateNickname(this.value);
+
+        if(validacion != "correcto"){
+
+           mensajeError(validacion,"newUser",this.name);
+            
+
+        }else{
+            url ="api/usuarios/existeNickname";
+            data = {nickname:this.value};
+            comprobacion = await enviarAlServidorPost(data, url);
+           
+            if(comprobacion.msg){
+
+                msg ="Este usuario ya esta cogido";
+                mensajeError(msg,"newUser", this.name);
+
+            }else{
+                quitarError("newUser", this.name);
+               
+            }
+           
+        }
+
+    //comprobar los nombres    
+    }else if(this.name == "nombre" || this.name == "apellido" || this.name == "equipo"){
+
+        validacion = validarNombre(this.value);
+
+        if(validacion != "correcto"){
+            
+            mensajeError(validacion,"newUser",this.name);
+
+        }else{
+
+            quitarError("newUser", this.name);
+        }
+
+    //comprobar el email
+    }else if(this.name == "email"){
+        
+        validacion = validarEmail(this.value);
+
+        if(validacion != "correcto"){
+            
+            mensajeError(validacion,"newUser",this.name);
+
+        }else{
+
+            url ="api/usuarios/existeEmail";
+            data = {email:this.value};
+            comprobacion = await enviarAlServidorPost(data, url);
+
+            if(comprobacion.msg){
+
+                msg ="Este email ya existe";
+                mensajeError(msg,"newUser", this.name);
+
+            }else{
+
+                quitarError("newUser", this.name);
+            }
+           
+        }
+
+    }else if(this.name == "password"){
+
+    }
+
+}
+
 async function crearUsuario(tipoUsuario) {
     
     let nombreUsuario = document.querySelector('input[name="nickname"]').value;
@@ -15,8 +190,8 @@ async function crearUsuario(tipoUsuario) {
 
             
             let nombreEquipo = document.querySelector('input[name="equipo"]').value;
-    
-            let dataEquipo = {nick:nombreUsuario, pws:password, equipo:nombreEquipo, drc:direccion, email:mail, tipo:tipoUsuario}
+            let creacion = document.querySelector('input[name="creacionEquipo"]').value;
+            let dataEquipo = {nick:nombreUsuario, pws:password, equipo:nombreEquipo, crnEquipo:creacion, drc:direccion, email:mail, tipo:tipoUsuario}
            
             //crear el usuario
             let respuestaEquipo =  await enviarAlServidorPost(dataEquipo, url);
@@ -73,6 +248,7 @@ function createFormNewUser(e){
     inputNickname.setAttribute("type","text");
     inputNickname.setAttribute("placeholder", "Nickname");
     inputNickname.setAttribute("name", "nickname");
+    inputNickname.addEventListener("blur", verificacion);
 
     //Password
     let divPassword = document.createElement("div");
@@ -80,9 +256,10 @@ function createFormNewUser(e){
     let labelPassword = document.createElement("p");
     labelPassword.innerText="Contraseña";
     let inputPassword = document.createElement("input");
-    inputPassword.setAttribute("type","text");
+    inputPassword.setAttribute("type","password");
     inputPassword.setAttribute("placeholder", "Contraseña");
     inputPassword.setAttribute("name", "contraseña");
+    inputPassword.addEventListener("blur", verificacion);
 
     //Repetir Password
     let divRePassword = document.createElement("div");
@@ -90,10 +267,11 @@ function createFormNewUser(e){
     let labelRePassword = document.createElement("p");
     labelRePassword.innerText="Repetir Contraseña";
     let inputRePassword = document.createElement("input");
-    inputRePassword.setAttribute("type","text");
+    inputRePassword.setAttribute("type","password");
     inputRePassword.setAttribute("placeholder", "Repitir Contraseña");
     inputRePassword.setAttribute("name", "passwordRepetida");
-    
+    inputRePassword.addEventListener("blur", verificacion);
+
     //Equipo
     let divEquipo = document.createElement("div");
     divEquipo.classList.add("label-info");
@@ -103,6 +281,7 @@ function createFormNewUser(e){
     inputEquipo.setAttribute("type","text");
     inputEquipo.setAttribute("placeholder", "Nombre Equipo");
     inputEquipo.setAttribute("name", "equipo");
+    inputEquipo.addEventListener("blur", verificacion);
 
     //Nombre
     let divNombre = document.createElement("div");
@@ -113,6 +292,7 @@ function createFormNewUser(e){
     inputNombre.setAttribute("type","text");
     inputNombre.setAttribute("placeholder", "Nombre");
     inputNombre.setAttribute("name", "nombre");
+    inputNombre.addEventListener("blur", verificacion);
 
     //Apellidos
     let divApellidos = document.createElement("div");
@@ -123,6 +303,7 @@ function createFormNewUser(e){
     inputApellidos.setAttribute("type","text");
     inputApellidos.setAttribute("placeholder", "Apellidos");
     inputApellidos.setAttribute("name", "apellidos");
+    inputApellidos.addEventListener("blur", verificacion);
 
     //Nacimiento
     let divNacimiento = document.createElement("div");
@@ -133,6 +314,7 @@ function createFormNewUser(e){
     inputNacimiento.setAttribute("type","text");
     inputNacimiento.setAttribute("placeholder", "Fecha de Nacimiento");
     inputNacimiento.setAttribute("name", "nacimiento");
+    inputNacimiento.addEventListener("blur", verificacion);
 
     //DNI
     let divDni = document.createElement("div");
@@ -143,6 +325,18 @@ function createFormNewUser(e){
     inputDni.setAttribute("type","text");
     inputDni.setAttribute("placeholder", "DNI");
     inputDni.setAttribute("name", "dni");
+    inputDni.addEventListener("blur", verificacion);
+
+    //FECHA DE CREACION
+    let divCrearcionEquipo = document.createElement("div");
+    divCrearcionEquipo.classList.add("label-info");
+    let labelCrearcionEquipo = document.createElement("p");
+    labelCrearcionEquipo.innerText = "Fecha de Creación"
+    let inputCreacionEquipo = document.createElement("input");
+    inputCreacionEquipo.setAttribute("type","text");
+    inputCreacionEquipo.setAttribute("placeholder", "Fecha de creación");
+    inputCreacionEquipo.setAttribute("name", "creacionEquipo");
+    inputCreacionEquipo.addEventListener("blur", verificacion);
 
     //Dirrecion
     let divDireccion = document.createElement("div");
@@ -153,6 +347,7 @@ function createFormNewUser(e){
     inputDireccion.setAttribute("type","text");
     inputDireccion.setAttribute("placeholder", "Direccion");
     inputDireccion.setAttribute("name", "direccion");
+    inputDireccion.addEventListener("blur", verificacion);
 
     //Email
     let divMail = document.createElement("div");
@@ -163,6 +358,7 @@ function createFormNewUser(e){
     inputMail.setAttribute("type","text");
     inputMail.setAttribute("placeholder", "Email");
     inputMail.setAttribute("name", "email");
+    inputMail.addEventListener("blur", verificacion);
 
     //Si es un equipo
     if(e.target.value == 'equipo'){
@@ -184,6 +380,10 @@ function createFormNewUser(e){
         divEquipo.appendChild(labelEquipo);
         divEquipo.appendChild(inputEquipo);
         form.appendChild(divEquipo);
+
+        divCrearcionEquipo.appendChild(labelCrearcionEquipo);
+        divCrearcionEquipo.appendChild(inputCreacionEquipo);
+        form.appendChild(divCrearcionEquipo);
 
         divDireccion.appendChild(labelDireccion);
         divDireccion.appendChild(inputDireccion);
@@ -248,18 +448,13 @@ function cambioDiv(divVisible, divInvisible){
 
    divInvisible.classList.add("invisible");
    divInvisible.classList.remove("visible");
+   
    document.querySelector(".btnAtras").addEventListener("click",() =>{
         let divForm = document.getElementById("divNewUser");
         divForm.childNodes[5].innerHTML="";
         cambioDiv(divInvisible,divVisible);
    });
    
-}
-
-//TODO
-function mensajeError(msg, input) {
-    
-    
 }
 
 //enviar datos al servidor
@@ -293,13 +488,15 @@ async function login(usuario, contraseña){
         
         //Guardamos el usuario en el local storage
         localStorage.setItem('user', respuesta.user.id);
-        
+        localStorage.setItem('tipo', respuesta.user.tipo);
+
         window.location.href = 'api/usuarios/profile/' + respuesta.user.tipo;
 
     }else{
 
         //TODO
-        mensajeError(respuesta.message);
+        let stringInput ="login";
+        mensajeError(respuesta.message, stringInput, respuesta.input);
         
     }
        

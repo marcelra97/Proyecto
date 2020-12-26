@@ -1,0 +1,69 @@
+<div id="contenidoPagina">
+    {{>header}}
+
+    <div id="contenidoPrincipal">
+        
+        <h1>DATOS DEL EQUIPO</h1>
+
+       <div id="contenidoPerfil">
+           
+            <div id="fotoPerfil">
+                 <img id="foto" src="../../../img/perfil_default.png">
+                 <label id="nick"></label>
+            </div>
+
+            <div id="infPerfil">
+
+                <div class="label-info">
+
+                    <div class="label-text">
+                        <label>Nombre del Equipo</label>
+                    </div>
+
+                    <input type="text" id="equipo" readonly>
+
+                </div>
+ 
+
+                <div class="label-info">
+
+                    <div class="label-text">
+                        <label>Fecha de Creación</label>
+                    </div>
+
+                    <input type="text" id="creacion" readonly>
+
+                </div>
+
+                 <div class="label-info">
+
+                    <div class="label-text">
+                        <label>Dirección</label>
+                    </div>
+
+                    <input type="text" id="direccion" readonly>
+
+                </div>        
+
+
+                <div class="label-info">
+
+                    <div class="label-text">
+                        <label>Email</label>
+                    </div>
+
+                    <input type="text" id="email" readonly>
+
+                </div>  
+               
+               
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{>footer}}
+
+</div>

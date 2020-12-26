@@ -1,5 +1,38 @@
 const model = require("../model/gamejob.model.js"); // con esto estoy haciendo conexion con la base de datos mediante lo que tengo configurado en el modelo
 
+
+exports.existeEmail = async(req, res) =>{
+  const connection = await model.getConnection();
+
+  const [rows] = await connection.execute('SELECT * FROM `usuarios` WHERE `email` = ?',[req.body.email]);
+
+  if(rows.length != 0){
+    res.send({msg:true});
+    
+  }else{
+
+    res.send({msg:false});
+  }
+
+}
+
+exports.existeNickname = async(req, res) =>{
+
+  const connection = await model.getConnection();
+
+  const [rows] = await connection.execute('SELECT * FROM `usuarios` WHERE `nickname` = ?',[req.body.nickname]);
+
+  if(rows.length != 0){
+    res.send({msg:true});
+
+  }else{
+
+    res.send({msg:false});
+  }
+
+}
+
+
 exports.newUser = async (req, res) =>{
 
   const connection = await model.getConnection();
@@ -11,10 +44,9 @@ exports.newUser = async (req, res) =>{
 
   const  [rows] = await connection.execute(sql);
  
-    //const sql2 = 'SELECT id FROM usuarios WHERE'
   if(req.body.tipo == "equipo"){
     
-    const sqlEquipo = 'INSERT INTO equipo (nombre_equipo, id_usuarios) VALUES ("'+ req.body.equipo + '","'+ rows.insertId +'")';
+    const sqlEquipo = 'INSERT INTO equipo (nombre_equipo, fecha_creacion, id_usuarios) VALUES ("'+ req.body.equipo + '","'+ req.body.crnEquipo +'","'+ rows.insertId +'")';
     
     const [rowsEquipo] = await connection.execute(sqlEquipo);
     
@@ -52,11 +84,11 @@ exports.findByNickname= async (nickname) => {
   const connection = await model.getConnection();
   
   const [rows] = await connection.execute('SELECT * FROM `usuarios` WHERE `nickname` = ?',[nickname]);
-  const tipo = rows[0].tipo_usuario;
-  
-  const [rows2] = await connection.execute("SELECT * FROM usuarios INNER JOIN "+ tipo +" ON usuarios.id = "+ tipo +".id_usuarios WHERE usuarios.id = "+ rows[0].id +"");
-  
-  if([rows].length){
+ 
+  if(rows.length != 0 ){
+
+     const tipo = rows[0].tipo_usuario;
+     const [rows2] = await connection.execute("SELECT * FROM usuarios INNER JOIN "+ tipo +" ON usuarios.id = "+ tipo +".id_usuarios WHERE usuarios.id = "+ rows[0].id +"");
 
     if(rows2[0].tipo_usuario == "equipo"){
       
@@ -65,18 +97,20 @@ exports.findByNickname= async (nickname) => {
     }
 
     if(rows2[0].tipo_usuario == "jugador"){
-      const user = parseUser(rows)
+      const user = parseUser(rows2)
       return user;
     }
-    
+
+  }else{
+
+    return false;
   }
-  return null;
   
 }
 
 //ID de passport
 exports.findByIdByPassport = async(id) => {
-
+  
   const connection = await model.getConnection();
 
   const [rows] = await connection.execute('SELECT * FROM `usuarios` WHERE `id` = ?',[id]);
@@ -84,7 +118,7 @@ exports.findByIdByPassport = async(id) => {
 
   const [rows2] = await connection.execute("SELECT * FROM usuarios INNER JOIN "+ tipo +" ON usuarios.id = "+ tipo +".id_usuarios WHERE usuarios.id = "+ rows[0].id +"");
 
-  if([rows2].length){
+  if(rows2.length){
 
     if(rows2[0].tipo_usuario == "equipo"){
 
@@ -106,7 +140,7 @@ exports.findByIdByPassport = async(id) => {
 
 //Para cargar el perfil del usuario
 exports.findUserById = async (req, res) =>{
-  console.log("Estoy buscando informacion del usuario");
+  
   const connection = await model.getConnection();
   
   const [rows] = await connection.execute('SELECT * FROM `usuarios` WHERE `id` = ?',[req.params.id]);
@@ -136,7 +170,7 @@ const parseUser = (results) => {
 
   return{
     
-    id: results[0].id,
+    id: results[0].id_usuarios,
     nickname: results[0].nickname,
     nombre: results[0].nombre,
     apellidos: results[0].apellidos,
@@ -154,9 +188,10 @@ const parseEquipo = (results) => {
 
   return{
     
-    id: results[0].id,
+    id: results[0].id_usuarios,
     nickname: results[0].nickname,
     equipo: results[0].nombre_equipo,
+    creacion_equipo: results[0].fecha_creacion,
     direccion: results[0].direccion,
     email: results[0].email,
     password: results[0].password,
