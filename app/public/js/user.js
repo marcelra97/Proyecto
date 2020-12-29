@@ -45,9 +45,18 @@ async function loadUserInfo(localStorage) {
 
 }
 
-function redireccionMenu(event){
+function redireccionMenu(){
 
-    window.location.href = event.target.attributes.value.nodeValue;
+    let localStorageTipo = localStorage.getItem('tipo');
+
+    if(this.attributes[0].value == "perfil"){
+        
+        window.location.href = this.attributes.value.nodeValue + localStorageTipo;
+
+    }else{
+
+        window.location.href = event.target.attributes.value.nodeValue;
+    }
     
 }
 

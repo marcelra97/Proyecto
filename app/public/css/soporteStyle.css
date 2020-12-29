@@ -1,0 +1,193 @@
+body {
+  background-color: #EAEAEA;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+}
+body #contenidoPagina {
+  height: 120vh;
+  display: grid;
+  grid-template-rows: 6% 75% 20%;
+  grid-template-columns: 25% 1fr 25%;
+  grid-template-areas: "menu menu menu" ". soporte ." "footer footer footer";
+}
+body #contenidoPagina .head {
+  display: grid;
+  grid-area: menu;
+  background-color: #2f57ff;
+  grid-template-columns: 15% 1fr 45%;
+  grid-template-areas: "logo . menulista";
+}
+body #contenidoPagina .head #logo {
+  grid-area: logo;
+}
+body #contenidoPagina .head #menubar {
+  grid-area: menulista;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: stretch;
+  align-content: center;
+}
+body #contenidoPagina .head #menubar button {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 100%;
+  color: white;
+  transition-property: background-color, color;
+  transition-duration: 0.5s;
+}
+body #contenidoPagina .head #menubar .botonMenu:hover {
+  background-color: white;
+  color: #2f57ff;
+  text-decoration: none;
+}
+body #contenidoPagina .head #menubar #perfil i {
+  margin-right: 3%;
+}
+body #contenidoPagina .head #menubar #perfil .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  margin-top: 1.5%;
+}
+body #contenidoPagina .head #menubar #perfil .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+body #contenidoPagina .head #menubar #perfil .dropdown-content .dropButton:hover {
+  background-color: white;
+}
+body #contenidoPagina .head #menubar #perfil:hover .dropdown-content {
+  display: block;
+}
+body #contenidoPagina #divSoporte {
+  grid-area: soporte;
+  margin-top: 5%;
+}
+body #contenidoPagina #divSoporte #titulo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+body #contenidoPagina #divSoporte #titulo img {
+  padding-top: 1%;
+  padding-right: 1%;
+  width: 45px;
+  height: 45px;
+}
+body #contenidoPagina #divSoporte h2, body #contenidoPagina #divSoporte h4, body #contenidoPagina #divSoporte h3 {
+  text-align: center;
+}
+body #contenidoPagina #divSoporte #divListas {
+  margin-top: 5%;
+}
+body #contenidoPagina #divSoporte #divListas .listas {
+  list-style: none;
+  height: 40px;
+  transition-property: height;
+  transition-duration: 0.5;
+}
+body #contenidoPagina #divSoporte #divListas .listas .help {
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #b6b6b6;
+  font-size: 1.1em;
+  background-color: white;
+}
+body #contenidoPagina #divSoporte #divListas .listas .help label {
+  padding-left: 1%;
+  cursor: pointer;
+}
+body #contenidoPagina #divSoporte #divListas .listas .help::before {
+  content: "";
+  width: 40px;
+  height: 40px;
+  background: url(../../img/arrow_down.png) no-repeat center 10px;
+  background-color: #167db7;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 17px;
+}
+body #contenidoPagina #divSoporte #divListas .listas .help:hover {
+  background-color: #167db7;
+  color: white;
+  cursor: pointer;
+}
+body #contenidoPagina #divSoporte #divListas .listas .miniLista {
+  display: block;
+  list-style: none;
+  opacity: 1;
+  height: 100%;
+  background-color: white;
+  transition-property: opacity;
+  transition-duration: 1s;
+}
+body #contenidoPagina #divSoporte #divListas .listas .miniLista li {
+  padding-bottom: 1%;
+  padding-top: 0.5%;
+}
+body #contenidoPagina #divSoporte #divListas .active {
+  height: 150px;
+}
+body #contenidoPagina #divSoporte #banner {
+  margin-top: 5%;
+}
+body #contenidoPagina #footer {
+  grid-area: footer;
+  background-image: url("../../img/fondo_footer.jpg");
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row: repeat(50%);
+  grid-template-areas: "politica redes" "p p";
+}
+body #contenidoPagina #footer #contenidoPolitica {
+  grid-area: politica;
+  margin-top: 2%;
+  text-align: center;
+}
+body #contenidoPagina #footer #contenidoPolitica h3 {
+  text-decoration-line: underline;
+}
+body #contenidoPagina #footer #contenidoPolitica a {
+  text-decoration: none;
+  color: black;
+}
+body #contenidoPagina #footer #contenidoPolitica a:hover {
+  color: grey;
+}
+body #contenidoPagina #footer #redes {
+  grid-area: redes;
+  margin-top: 2%;
+  text-align: center;
+}
+body #contenidoPagina #footer #redes h3 {
+  text-decoration-line: underline;
+}
+body #contenidoPagina #footer #redes img {
+  margin-left: 2%;
+}
+body #contenidoPagina #footer .copy {
+  grid-area: p;
+  margin-left: 5%;
+  margin-bottom: 1;
+}
+
+.invisible {
+  display: none;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 1s;
+}
+
+/*# sourceMappingURL=soporteStyle.css.map */

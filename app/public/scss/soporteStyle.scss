@@ -1,0 +1,261 @@
+body{
+     
+    background-color: #EAEAEA;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin:0;
+   
+    #contenidoPagina{
+
+        height: 120vh;
+        display: grid;
+
+        grid-template-rows: 6% 75% 20%;
+        grid-template-columns: 25% 1fr 25%;
+        grid-template-areas: "menu menu menu"
+                             ". soporte ."
+                             "footer footer footer";
+
+        .head{
+
+        display: grid;
+        grid-area: menu;
+                                
+                    
+        background-color: #2f57ff;
+        grid-template-columns: 15% 1fr 45%;
+        grid-template-areas: "logo . menulista";
+                                
+            #logo{
+                grid-area: logo;
+            }
+                        
+            #menubar{
+                                    
+                grid-area: menulista;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: stretch;
+                align-content: center;
+                    
+                button{
+                    width: 100%;
+                    background-color: transparent;
+                    border: none;
+                    cursor:pointer;
+                    font-size: 100%;
+                    color: white;
+                    transition-property: background-color, color;
+                    transition-duration:0.5s;
+                }
+                    
+                .botonMenu:hover{
+                        
+                    background-color: white;
+                    color:  #2f57ff;
+                    text-decoration: none;
+                                        
+                }
+                    
+                #perfil{
+                    
+                    i{
+                        margin-right: 3%;
+                    }
+                    
+                    .dropdown-content {
+                        display: none;
+                        position: absolute;
+                        background-color: #f1f1f1;
+                        min-width: 200px;
+                        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                        z-index: 1;
+                        margin-top: 1.5% ;
+                    
+                        a {
+                            color: black;
+                            padding: 12px 16px;
+                            text-decoration: none;
+                            display: block;
+                            transition-property: background-color;
+                            transition-duration: 0.3s;
+                        }
+                    
+                        .dropButton:hover{
+                            background-color: white;
+                        }
+                    }
+                    
+                }
+                    
+                #perfil:hover{
+                    .dropdown-content {
+                        display: block;
+                    }
+                }
+                                    
+            }
+        }
+
+        #divSoporte{
+
+            grid-area: soporte;
+            margin-top: 5%;
+
+            #titulo{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+
+                img{
+                    padding-top: 1%;
+                    padding-right: 1%;
+                    width: 45px;
+                    height: 45px;
+                }
+                
+            }
+
+            h2, h4, h3{
+                text-align: center;
+            }
+
+            #divListas{
+                margin-top: 5%;
+                
+                .listas{ 
+                
+                    list-style: none;
+                    height: 40px;
+                    
+                    transition-property: height;
+                    transition-duration: 0.5;
+
+                    .help{
+                        display: inline-block;
+                        width: 100%;
+                        height: 40px;
+                        border: 1px solid rgb(182, 182, 182);
+                        font-size: 1.1em;
+                        background-color: white;
+                        label{
+                            padding-left: 1%;
+                            cursor: pointer;
+                        }
+    
+                    }
+    
+                    .help::before{
+                        content: "";
+                        width: 40px;
+                        height: 40px;
+                        background: url(../../img/arrow_down.png) no-repeat center 10px;
+                        background-color: #167db7;
+                        box-sizing: border-box;
+                        padding-left: 20px;
+                        padding-right: 20px;
+                        padding-bottom: 17px;
+                    }
+    
+                    .help:hover{
+                        background-color: #167db7;
+                        color: white;
+                        cursor: pointer;
+                    }
+    
+                    .miniLista{
+                        display: block;
+                        list-style: none;
+                        opacity: 1;
+                        height: 100%;
+                        background-color: white;
+                        transition-property: opacity;
+                        transition-duration:1s;
+                        
+                        li{
+                            padding-bottom: 1%;
+                            padding-top: 0.5%;
+                        }
+                        
+                    }
+                    
+    
+                }
+                .active{
+                    height: 150px;
+                }    
+            }
+            
+            #banner{
+                margin-top: 5%;
+            }
+         
+        }
+        
+        #footer{
+            
+            grid-area: footer;
+
+            background-image: url("../../img/fondo_footer.jpg");
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-row: repeat(50%);
+
+            grid-template-areas: 
+                                "politica redes"
+                                "p p";
+
+                                
+            #contenidoPolitica{
+                grid-area: politica;
+                
+                margin-top: 2%;
+                text-align: center;
+
+                h3{
+                    text-decoration-line: underline;
+                }
+
+                a{
+                    text-decoration: none;
+                    color: black;
+                }
+
+                a:hover{
+                    color: grey;
+                }
+
+
+            }
+
+            #redes{
+
+                grid-area: redes;
+                margin-top: 2%;
+                text-align: center;
+                
+                h3{
+                    text-decoration-line: underline;
+                }
+
+                img{
+                    margin-left: 2%;
+                }
+
+            }
+            
+            .copy{
+                grid-area: p;
+                margin-left: 5%;
+                margin-bottom: 1;
+            }
+        }        
+    }
+
+}    
+.invisible{
+    display: none;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration:1s;
+}
