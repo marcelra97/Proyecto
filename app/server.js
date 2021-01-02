@@ -48,11 +48,13 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 //Rutas
- // con esto estoy exportando las rutas que tengo configuradas en el fichero routes, en el servidor
+// con esto estoy exportando las rutas que tengo configuradas en el fichero routes, en el servidor
 app.use(require('./routes'))
 app.use("/api", require('./routes/usuarios.routes.js'));
 app.use("/api", require('./routes/soporte.routes'));
 app.use("/api", require('./routes/blogs.routes'));
+app.use("/api", require('./routes/ofertas.routes'));
+
 
 // Paginas publicas (estaticas)
 app.use(express.static(path.join(__dirname, '/public')));

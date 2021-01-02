@@ -1,0 +1,91 @@
+<div id="contenidoPagina">
+    {{>header}}
+
+    <div id="divPrincipal">
+        
+        <div id="divBuscador">
+            <h2>Aqui comienza tu gran busqueda</h2>
+
+            <div id="buscador">
+                <p>Busca la oferta mas adecuada para ti</p>
+ 
+                <input type="text" placeholder="Buscar Ofertas">
+
+                <button class="btnBuscar">Buscar</button>            
+
+            </div>
+
+        </div>
+
+        <div id="divOfertas">
+
+            <div id="filtro">
+                <div class="filter">
+                    <p>Fecha</p>
+                   
+                    <label><input type="radio" name="fecha" value="cualquierFecha">Cualquier fecha</label>
+                    <label><input type="radio" name="fecha" value="24horas">24 horas</label>
+                    <label><input type="radio" name="fecha" value="7dias">7 dias</label>
+                    <label><input type="radio" name="fecha" value="15dias">15 dias</label>
+                    
+                </div>
+                
+                <div class="filter">
+                    <p>Puesto de Trabajo</p>
+                   
+                    <label><input type="radio" name="puesto" value="jugadorPro">Jugador Profesional</label>
+                    <label><input type="radio" name="puesto" value="manager">Manager</label>
+                    <label><input type="radio" name="puesto" value="entrenador">Entrenador</label>
+                    <label><input type="radio" name="puesto" value="suplente">Suplente</label>
+                    
+                </div>
+
+                <div class="filter">
+                    <p>Salario Minimo</p>
+                   
+                    <label for="price">Elija un salario: <output class="price-output" for="price"></output> </label>
+                    <input type="range" class="slider" name="price" id="price" min="900" max="2000" step="100" value="0">
+                    <div><span class="first">900</span> <span class="second">+2000</span></div>
+                    
+                </div>
+
+                <div class="filter">
+                    <p>Experiencia Laboral</p>
+                   
+                    <label for="year">Elija los años de experiencia: <output class="year-output" for="price"></output> </label>
+                    <input type="range" class="slider" name="year" id="year" min="0" max="10" step="1" value="0">
+                    <div><span class="first">0</span> <span class="second">+10</span></div>
+                    
+                </div>
+
+                <div class="filter">
+                    <p>Jornada Laboral</p>
+                   
+                    <label><input type="radio" name="jornada" value="completa">Completa</label>
+                    <label><input type="radio" name="jornada" value="indiferente">Indiferente</label>
+                    <label><input type="radio" name="jornada" value="parcial">Parcial</label>
+                    <label><input type="radio" name="jornada" value="intensiva">Intensiva</label>
+                    
+                </div>
+
+                <div class="filter">
+                    <p>Tipo de Contrato</p>
+                   
+                    <label><input type="radio" name="contrato" value="indefinido">Indefinido</label>
+                    <label><input type="radio" name="contrato" value="tiempo-parcial">Tiempo parcial</label>
+                    <label><input type="radio" name="contrato" value="duracion-determinada">Duracion determinada</label>
+                    <label><input type="radio" name="contrato" value="otros-contratos">Otros contratos</label>
+                    
+                </div>
+
+            </div>
+
+            <div id="ofertas">
+
+            </div>    
+
+        </div>
+    </div>
+
+    {{>footer}}
+</div>   
