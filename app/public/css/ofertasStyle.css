@@ -81,7 +81,7 @@ body #contenidoPagina #divPrincipal #divBuscador {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: url("../../img/banner4.jpg") no-repeat;
+  background: url("../../img/banner.jpg") no-repeat;
   background-size: cover;
   color: white;
 }
