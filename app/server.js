@@ -8,7 +8,7 @@ const session = require('express-session');
 
 const app = express();
 
-app.set('port', process.env.PORT || 3000);
+const puerto = process.env.PORT || 3000;
 
 require('./config/passport');
 
@@ -61,6 +61,6 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 
  // Escuchemos en un puerto
-app.listen(app.get('port'), () => {
+app.listen(puerto, () => {
     console.log(" * [ GameJob ] A toda maquina!!! en http://localhost:3000");
  });
