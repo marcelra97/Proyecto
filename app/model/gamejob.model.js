@@ -5,10 +5,10 @@ module.exports.getConnection = async function(){
     const mysql = require('mysql2/promise');
 
     let config ={
-      host     : 'localhost',
-      user     : 'marcel',
-      password : 'marcel97',
-      database : 'gamejob'
+      host     : 'eu-cdbr-west-03.cleardb.net',
+      user     : 'bc47777469fe2e',
+      password : '277f1b8e',
+      database : 'heroku_2f913fda8cad698'
     };
     
     return await mysql.createConnection(config);
