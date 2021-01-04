@@ -2,7 +2,7 @@
   "name": "gamejob",
   "version": "1.0.0",
   "description": "Proyecto de final de curso de DAW",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,11 +25,14 @@
     "express-session": "^1.17.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
-    "nodemon": "^2.0.6",
     "npm-check-updates": "^10.2.5",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6",
     "sass": "^1.30.0"
-  }
+}
 }
