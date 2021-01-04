@@ -4,9 +4,7 @@
   "description": "Proyecto de final de curso de DAW",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app/server.js",
-    "dev": "nodemon app/server.js"
+    "start": "node ./app/server.js"
   },
   "repository": {
     "type": "git",
