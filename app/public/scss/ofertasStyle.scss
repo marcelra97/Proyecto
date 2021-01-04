@@ -101,7 +101,7 @@ body{
             grid-area: principal;
 
             display: grid;
-            grid-template-columns: 20% 1fr 20%;
+            grid-template-columns: 15% 1fr 25%;
             grid-template-rows: 25% 1fr;
             grid-template-areas: "buscador buscador buscador"
                                   ".  ofertas ." ;
@@ -238,7 +238,66 @@ body{
 
                 }
 
+                #ofertas{
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    height: 100%;
+                    margin-top: 3%;
+
+                    .oferts{
+                        display: grid;
+                        grid-template-columns: 10% 1fr;
+                        height: 20%;
+                        background-color:white;
+                        box-shadow: 6px 4px 10px 1px rgba(0,0,0,0.75);
+                        border-radius: 10px;
+                        margin-bottom: 3%;
+                        .divimg{
+
+                            margin-left: 10%;
+                            margin-top: 5%;
+
+                            img{
+                                width: 100%;
+                                height: 35%;
+                            }
+                        }
+                       
+                        .datos{
+                            margin-left: 2%;
+
+                            h4{
+                                margin-bottom: 0;
+                            }
+
+                            h6{
+                                margin-top: 1%;
+                                color: rgb(107, 103, 103);
+                            }
+
+                            p{
+                                margin-bottom: 2%;
+                                text-align: justify;
+                                padding-right: 2%;
+                            }
+
+                            .etiquetas{
+                                margin-top: 2%;
+                                label{
+                                    background-color: #EAEAEA;
+                                    margin-left: 3%;
+                                }
+                                
+                            }
+                          
+                        }
+                    }
+                }
+
             }
+
+           
         }
         
         
