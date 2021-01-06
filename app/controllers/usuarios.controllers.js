@@ -1,5 +1,17 @@
 const model = require("../model/gamejob.model.js"); // con esto estoy haciendo conexion con la base de datos mediante lo que tengo configurado en el modelo
 
+exports.updateNombreJugador = async(req, res) =>{
+  const connection = await model.getConnection();
+  const sql = 'UPDATE jugador SET nombre = "'+ req.body.dato +'" WHERE id_usuarios = "'+ req.body.id + '";'
+  const [rows] = await connection.execute(sql);
+  
+  if(rows.affectedRows > 0){
+    res.send(true);
+  }else{
+    res.send(false);
+  }
+  
+}
 
 exports.existeEmail = async(req, res) =>{
   const connection = await model.getConnection();

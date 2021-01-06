@@ -64,4 +64,15 @@ router.get('/usuarios/profile/findUserById/:id', Usuarios.findUserById);
 router.post('/usuarios/existeNickname', Usuarios.existeNickname);
 router.post('/usuarios/existeEmail', Usuarios.existeEmail);
 
+router.get('/usuarios/configuracion', passport.authenticate('jwt', {session:false}), (req, res) =>{
+    
+    res.render('user/configuracionPerfil',{
+        styleConfiguration:'/css/configuracionStyle.css',
+        configurationjs:'/js/configuracion.js'
+    });
+});
+
+router.get('/usuarios/configuracion/findUserById/:id', Usuarios.findUserById)
+router.post('/usuarios/configuracion/updateNombreJugador', Usuarios.updateNombreJugador);
+
 module.exports = router;
