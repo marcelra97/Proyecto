@@ -1,5 +1,98 @@
 const model = require("../model/gamejob.model.js"); // con esto estoy haciendo conexion con la base de datos mediante lo que tengo configurado en el modelo
 
+exports.updateFechaCreacion = async(req, res) => {
+  const connection = await model.getConnection();
+  const sql = 'UPDATE equipo SET fecha_creacion = "'+ req.body.dato +'" WHERE id_usuarios = "'+ req.body.id + '";'
+  const [rows] = await connection.execute(sql);
+
+  if(rows.affectedRows > 0){
+    res.send(true);
+  }else{
+    res.send(false);
+  }
+
+}
+
+exports.updateNombreEquipo = async(req, res) => {
+  const connection = await model.getConnection();
+  const sql = 'UPDATE equipo SET nombre_equipo = "'+ req.body.dato +'" WHERE id_usuarios = "'+ req.body.id + '";'
+  const [rows] = await connection.execute(sql);
+
+  if(rows.affectedRows > 0){
+    res.send(true);
+  }else{
+    res.send(false);
+  }
+
+}
+
+exports.updateEmail = async(req, res) => {
+  const connection = await model.getConnection();
+  const sql = 'UPDATE usuarios SET email = "'+ req.body.dato +'" WHERE id = "'+ req.body.id + '";'
+  const [rows] = await connection.execute(sql);
+
+  if(rows.affectedRows > 0){
+    res.send(true);
+  }else{
+    res.send(false);
+  }
+
+}
+
+exports.updateDireccion = async(req, res) => {
+  const connection = await model.getConnection();
+  const sql = 'UPDATE usuarios SET direccion = "'+ req.body.dato +'" WHERE id = "'+ req.body.id + '";'
+  const [rows] = await connection.execute(sql);
+
+  if(rows.affectedRows > 0){
+    res.send(true);
+  }else{
+    res.send(false);
+  }
+
+}
+
+
+exports.updateDni = async(req, res) => {
+  const connection = await model.getConnection();
+  const sql = 'UPDATE jugador SET dni = "'+ req.body.dato +'" WHERE id_usuarios = "'+ req.body.id + '";'
+  const [rows] = await connection.execute(sql);
+
+  if(rows.affectedRows > 0){
+    res.send(true);
+  }else{
+    res.send(false);
+  }
+
+
+}
+
+exports.updateFechaNacimiento = async(req, res) => {
+  const connection = await model.getConnection();
+  const sql = 'UPDATE jugador SET fecha_nacimiento = "'+ req.body.dato +'" WHERE id_usuarios = "'+ req.body.id + '";'
+  const [rows] = await connection.execute(sql);
+
+  if(rows.affectedRows > 0){
+    res.send(true);
+  }else{
+    res.send(false);
+  }
+
+}
+
+exports.updateApellidos = async(req, res) => {
+  const connection = await model.getConnection();
+  const sql = 'UPDATE jugador SET apellidos = "'+ req.body.dato +'" WHERE id_usuarios = "'+ req.body.id + '";'
+  const [rows] = await connection.execute(sql);
+  
+  if(rows.affectedRows > 0){
+    res.send(true);
+  }else{
+    res.send(false);
+  }
+
+}
+
 exports.updateNombreJugador = async(req, res) =>{
   const connection = await model.getConnection();
   const sql = 'UPDATE jugador SET nombre = "'+ req.body.dato +'" WHERE id_usuarios = "'+ req.body.id + '";'

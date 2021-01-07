@@ -1,6 +1,6 @@
 function mostrarJugadorConf(informacion) {
     
-    let divPrincipal = document.getElementById("divConfiguracion");
+    let divPrincipal = document.getElementById("divActualizador");
     
     let divNombre = document.createElement("div");
     divNombre.classList.add("label-info");
@@ -72,7 +72,7 @@ function mostrarJugadorConf(informacion) {
     inputDireccion.setAttribute("name", "direccion");
     inputDireccion.setAttribute("placeholder", "Direccion");
     let buttonDireccion = document.createElement("button");
-    buttonDireccion.setAttribute("value","updateDireccionJugador");
+    buttonDireccion.setAttribute("value","updateDireccion");
     buttonDireccion.classList.add("btnEdit");
     let imgDireccion = document.createElement("i");
     imgDireccion.classList.add("fas", "fa-edit");
@@ -87,7 +87,7 @@ function mostrarJugadorConf(informacion) {
     inputMail.setAttribute("placeholder", "Email");
     inputMail.setAttribute("name", "email");
     let buttonMail = document.createElement("button");
-    buttonMail.setAttribute("value","updateEmailJugador");
+    buttonMail.setAttribute("value","updateEmail");
     buttonMail.classList.add("btnEdit");
     let imgMail = document.createElement("i");
     imgMail.classList.add("fas", "fa-edit");
@@ -133,7 +133,7 @@ function mostrarJugadorConf(informacion) {
 }
 
 function mostrarEquipoConf(informacion) {
-    let divPrincipal = document.getElementById("divConfiguracion");
+    let divPrincipal = document.getElementById("divActualizador");
 
     let divEquipo = document.createElement("div");
     divEquipo.classList.add("label-info");
@@ -175,7 +175,7 @@ function mostrarEquipoConf(informacion) {
     inputDireccion.setAttribute("placeholder", "Direccion");
     inputDireccion.setAttribute("name", "direccion");
     let buttonDireccion = document.createElement("button");
-    buttonDireccion.setAttribute("value","updateDireccionEquipo");
+    buttonDireccion.setAttribute("value","updateDireccion");
     buttonDireccion.classList.add("btnEdit");
     let imgDireccion = document.createElement("i");
     imgDireccion.classList.add("fas", "fa-edit");
@@ -190,7 +190,7 @@ function mostrarEquipoConf(informacion) {
     inputMail.setAttribute("placeholder", "Email");
     inputMail.setAttribute("name", "email");
     let buttonMail = document.createElement("button");
-    buttonMail.setAttribute("value","updateEmailEquipo");
+    buttonMail.setAttribute("value","updateEmail");
     buttonMail.classList.add("btnEdit");
     let imgMail = document.createElement("i");
     imgMail.classList.add("fas", "fa-edit");
@@ -228,7 +228,7 @@ function boxMessage(msg) {
     divBox.className = "";
     
 
-    if(msg = true){
+    if(msg){
         mensaje = "Actualizado correctamente";
         divBox.innerHTML = '<span>' + mensaje + '</span>';
         divBox.classList.remove("invisible");
@@ -269,6 +269,8 @@ async function editarInformacion(){
     let user = localStorage.getItem('user');
 
     if(input.value == ""){
+        
+        boxMessage(false);
 
     }else{
         

@@ -99,7 +99,6 @@ body{
         }   
         #divPrincipal{
             grid-area: configuracion;
-            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -109,7 +108,7 @@ body{
                 flex-direction: row;
                 justify-content: center;
                 height: 5%;
-                width: 15%;
+                width: 20%;
                 border-radius: 10px;
                 padding-top: 1%;
                
@@ -117,64 +116,74 @@ body{
 
             #divConfiguracion{
                 
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                flex-wrap: wrap;
+                
+                width: 80%;
+                height: 40%;
                 background-color: white;
                 border-radius: 30px;
                 margin-top: 3%;
-                margin-bottom: 3%;
+                box-shadow: 6px 6px 8px 1px rgba(0,0,0,0.75);
                 
-               
+                #divActualizador{
 
-                .label-info{
-                    width: 50%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
                     margin-top: 2%;
-                    margin-bottom: 5%;
-    
-                    p{
-                        margin-left: 10%;
-                    }
-    
-                    input{
-                        margin-left: 10%;
+                    margin-left: 10%;
+                    margin-right: 10%;
+                    
+
+                    .label-info{
                         width: 50%;
-                        height: 40%;
-                        border-style: solid;
-                        border-color: #ccc;
-                        border-radius: 25px;
+                        height: 30%;
+                        margin-top: 2%;
+        
+                        p{
+                            margin-left: 10%;
+                        }
+        
+                        input{
+                            margin-left: 10%;
+                            width: 50%;
+                            height: 60%;
+                            border-style: solid;
+                            border-color: #ccc;
+                            border-radius: 25px;
+                        }
+    
+                        .btnEdit{
+                            margin-left: 3%;
+                            text-align: center;
+                            width: 10%;
+                            height: 30%;
+                            box-shadow:inset 0px 1px 0px 0px #97c4fe;
+                            background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+                            background-color:#3d94f6;
+                            border-radius:6px;
+                            border:1px solid #337fed;
+                            display:inline-block;
+                            cursor:pointer;
+                            color:#ffffff;
+                            font-family:Arial;
+                            font-size:15px;
+                            font-weight:bold;
+                            padding:6px 24px;
+                            text-decoration:none;
+                            text-shadow:0px 1px 0px #1570cd;
+                        }
+                        .btnEdit:hover {
+                            background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+                            background-color:#1e62d0;
+                        }
+                        .btnEdit:active {
+                            position:relative;
+                            top:1px;
+                        }
                     }
 
-                    .btnEdit{
-                        margin-left: 3%;
-                        text-align: center;
-                        width: 10%;
-                        height: 30%;
-                        box-shadow:inset 0px 1px 0px 0px #97c4fe;
-                        background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
-                        background-color:#3d94f6;
-                        border-radius:6px;
-                        border:1px solid #337fed;
-                        display:inline-block;
-                        cursor:pointer;
-                        color:#ffffff;
-                        font-family:Arial;
-                        font-size:15px;
-                        font-weight:bold;
-                        padding:6px 24px;
-                        text-decoration:none;
-                        text-shadow:0px 1px 0px #1570cd;
-                    }
-                    .btnEdit:hover {
-                        background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
-                        background-color:#1e62d0;
-                    }
-                    .btnEdit:active {
-                        position:relative;
-                        top:1px;
-                    }
                 }
+                
             }
         }
 

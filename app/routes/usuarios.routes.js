@@ -74,5 +74,11 @@ router.get('/usuarios/configuracion', passport.authenticate('jwt', {session:fals
 
 router.get('/usuarios/configuracion/findUserById/:id', Usuarios.findUserById)
 router.post('/usuarios/configuracion/updateNombreJugador', Usuarios.updateNombreJugador);
-
+router.post('/usuarios/configuracion/updateApellidos', Usuarios.updateApellidos);
+router.post('/usuarios/configuracion/updateFechaNacimiento', Usuarios.updateFechaNacimiento);
+router.post('/usuarios/configuracion/updateDNI', Usuarios.updateDni);
+router.post('/usuarios/configuracion/updateNombreEquipo', Usuarios.updateNombreEquipo);
+router.post('/usuarios/configuracion/updateCreacionEquipo', Usuarios.updateFechaCreacion);
+router.post('/usuarios/configuracion/updateDireccion', Usuarios.updateDireccion);
+router.post('/usuarios/configuracion/updateEmail', Usuarios.updateEmail);
 module.exports = router;
