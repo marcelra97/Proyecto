@@ -145,7 +145,7 @@ exports.newUser = async (req, res) =>{
   const password = model.getEnCrypted(req.body.pws);
 
   const sql = 'INSERT INTO usuarios (id, nickname, direccion, email, password, tipo_usuario) ' +
-        'VALUES (null,"' + req.body.nick + '","' + req.body.drc + '","' + req.body.email + '","' + password + '","' + req.body.tipo + '")';
+              'VALUES (null,"' + req.body.nick + '","' + req.body.drc + '","' + req.body.email + '","' + password + '","' + req.body.tipo + '")';
 
   const  [rows] = await connection.execute(sql);
  
@@ -166,7 +166,7 @@ exports.newUser = async (req, res) =>{
   if(req.body.tipo == "jugador"){
    
     const sqlJugador = 'INSERT INTO jugador (nombre, apellidos, fecha_nacimiento, dni, id_usuarios) ' +
-        'VALUES ("' + req.body.nombre + '","' + req.body.apellidos + '","' + req.body.ncm + '","' + req.body.nif + '","'+ rows.insertId +'")';
+                      'VALUES ("' + req.body.nombre + '","' + req.body.apellidos + '","' + req.body.ncm + '","' + req.body.nif + '","'+ rows.insertId +'")';
 
     const [rowsJugador] = await connection.execute(sqlJugador);
 
